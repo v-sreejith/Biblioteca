@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.Objects;
 
+//Job: Represent a book
 public class Book {
     private final String name;
 

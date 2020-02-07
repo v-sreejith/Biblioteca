@@ -9,7 +9,7 @@ public class Library {
     private final List<Book> books;
 
     Library() {
-        this.books = init();
+        this.books = initBooks();
     }
 
     Library(List<Book> books) {
@@ -24,7 +24,7 @@ public class Library {
         return books;
     }
 
-    private List<Book> init() {
+    private List<Book> initBooks() {
         Book bookOne = new Book("Wings of Fire");
         Book bookTwo = new Book("Kite Runner");
         Book bookThree = new Book("Hunger Games");
