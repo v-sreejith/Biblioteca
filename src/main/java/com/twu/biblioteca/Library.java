@@ -16,7 +16,7 @@ public class Library {
         this.books = books;
     }
 
-    public String welcomeMessage() {
+    String welcomeMessage() {
         return WELCOME_MESSAGE;
     }
 
