@@ -5,13 +5,25 @@ import java.util.Objects;
 //Job: Represent a book
 public class Book {
     private final String name;
+    private final String author;
+    private final int year;
 
-    public Book(String name) {
+    public Book(String name, String author, int year) {
         this.name = name;
+        this.author = author;
+        this.year = year;
     }
 
     String getName() {
         return name;
+    }
+
+    String getAuthor() {
+        return author;
+    }
+
+    int getYear() {
+        return year;
     }
 
     @Override
@@ -19,11 +31,13 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(name, book.name);
+        return year == book.year &&
+                Objects.equals(name, book.name) &&
+                Objects.equals(author, book.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, author, year);
     }
 }

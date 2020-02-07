@@ -21,8 +21,11 @@ public class BibliotecaApp {
 
     public void printListOfBooks() {
         List<Book> books = library.getBooks();
+        System.out.format("%20s\t%30s\t%20s", "Titles", "Authors", "Year of Publication");
+        System.out.println();
         for (Book book : books) {
-            System.out.println(book.getName());
+            System.out.format("%20s\t%30s\t%20d", book.getName(), book.getAuthor(), book.getYear());
+            System.out.println();
         }
     }
 

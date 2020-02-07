@@ -25,9 +25,9 @@ public class Library {
     }
 
     private List<Book> initBooks() {
-        Book bookOne = new Book("Wings of Fire");
-        Book bookTwo = new Book("Kite Runner");
-        Book bookThree = new Book("Hunger Games");
+        Book bookOne = new Book("Wings of Fire", "A P J Abdul Kalam", 2001);
+        Book bookTwo = new Book("Kite Runner", "Khaled Hosseini", 2003);
+        Book bookThree = new Book("Hunger Games", "Suzzane", 2009);
         return List.of(bookOne, bookTwo, bookThree);
     }
 }
