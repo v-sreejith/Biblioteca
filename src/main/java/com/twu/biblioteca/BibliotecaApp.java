@@ -22,36 +22,58 @@ public class BibliotecaApp implements Executable{
         printWelcomeMessage();
         while (!exit) {
             printMenu(library.getOptions());
-            getOption();
-            executeOption();
         }
     }
 
     public void printWelcomeMessage() {
-        System.out.flush();
         System.out.println(library.welcomeMessage());
     }
 
     public void printListOfBooks() {
-        List<Book> books = library.getBooks();
-        System.out.format("%-20s\t%-30s\t%-20s", "Titles", "Authors", "Year of Publication");
-        System.out.println();
-        for (Book book : books) {
-            System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
+        do {
+            List<Book> books = library.getBooks();
+            System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
             System.out.println();
+            for (Book book : books) {
+                System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
+                System.out.println();
+            }
         }
+        while (!returnToMenu());
+
     }
 
     public void printMenu(List<String> options) {
         int i = 1;
+        System.out.println("\nSelect an option\n");
         for (String option : options) {
             System.out.println(i+". "+option);
             i += 1;
         }
+        executeOption();
     }
 
     public void quit() {
         exit = true;
+    }
+
+    public void goBack() {
+        printMenu(library.getOptions());
+    }
+
+    private boolean returnToMenu() {
+        System.out.println("\nPress 0 to return to menu");
+        getOption();
+        if (option == 0) {
+            library.option = Library.Option.Back;
+            library.option.executeOption();
+            return true;
+        }
+        else {
+            library.option = Library.Option.Invalid;
+            library.option.executeOption();
+            return false;
+        }
     }
 
     @Override
@@ -64,6 +86,7 @@ public class BibliotecaApp implements Executable{
     }
 
     public void executeOption() {
+        getOption();
         switch (option) {
             case 1:
                 library.option = Library.Option.One;

@@ -7,4 +7,6 @@ public interface Executable {
     void quit();
 
     void showInvalid();
+
+    void goBack();
 }

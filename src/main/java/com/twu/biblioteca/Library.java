@@ -64,6 +64,12 @@ public class Library {
             void executeOption() {
                 executable.showInvalid();
             }
+        },
+        Back {
+            @Override
+            void executeOption() {
+                executable.goBack();
+            }
         };
         Executable executable = new BibliotecaApp();
         abstract void executeOption();
