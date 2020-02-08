@@ -9,7 +9,7 @@ public class BibliotecaApp implements Executable {
     Scanner scanner;
     static boolean exit;
 
-    public void init() {
+    private void init() {
         library = new Library();
         scanner = new Scanner(System.in);
     }
@@ -18,14 +18,14 @@ public class BibliotecaApp implements Executable {
         init();
     }
 
-    public void start() {
+    private void start() {
         printWelcomeMessage();
         while (!exit) {
             printMenu(library.getOptions());
         }
     }
 
-    public void printWelcomeMessage() {
+    private void printWelcomeMessage() {
         System.out.println(library.welcomeMessage());
     }
 
@@ -43,7 +43,7 @@ public class BibliotecaApp implements Executable {
 
     }
 
-    public void printMenu(List<String> options) {
+    private void printMenu(List<String> options) {
         int i = 1;
         System.out.println("\nSelect an option\n");
         for (String option : options) {
@@ -78,11 +78,11 @@ public class BibliotecaApp implements Executable {
         System.out.println("\nPlease select a valid option\n");
     }
 
-    public void getOption() {
+    private void getOption() {
         option = scanner.nextInt();
     }
 
-    public void executeOption() {
+    private void executeOption() {
         getOption();
         switch (option) {
             case 1:
