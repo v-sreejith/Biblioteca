@@ -10,6 +10,7 @@ public enum Option {
     Two {
         @Override
         public void executeOption(Executable executable) {
+            executable.quit();
         }
     },
     Invalid {
