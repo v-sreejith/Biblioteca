@@ -3,22 +3,25 @@ package com.twu.biblioteca;
 import java.util.List;
 import java.util.Scanner;
 
-public class BibliotecaApp {
+public class BibliotecaApp implements Executable{
     Library library;
     int option;
     Scanner scanner;
-    boolean exit;
+    static boolean exit;
 
     public void init() {
         library = new Library();
         scanner = new Scanner(System.in);
     }
 
-    public void start() {
+    public BibliotecaApp() {
         init();
+    }
+
+    public void start() {
         while (!exit) {
             printWelcomeMessage();
-            printMenu();
+            printMenu(library.getOptions());
             getOption();
             executeOption();
         }
@@ -39,10 +42,12 @@ public class BibliotecaApp {
         }
     }
 
-    public void printMenu() {
-        System.out.println("Enter an option");
-        System.out.println("1. View All Books");
-        System.out.println("2. Quit App");
+    public void printMenu(List<String> options) {
+        int i = 1;
+        for (String option : options) {
+            System.out.println(i+". "+option);
+            i += 1;
+        }
     }
 
     public void quit() {
@@ -57,10 +62,12 @@ public class BibliotecaApp {
     public void executeOption() {
         switch (option) {
             case 1:
-                printListOfBooks();
+                library.option = Library.Option.One;
+                library.option.executeOption();
                 break;
             case 2:
-                quit();
+                library.option = Library.Option.Two;
+                library.option.executeOption();
                 break;
             default:
                 System.out.println("Wrong Choice");
