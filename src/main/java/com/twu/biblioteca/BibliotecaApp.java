@@ -65,10 +65,10 @@ public class BibliotecaApp implements Executable {
         System.out.println("\nPress 0 to return to menu");
         getOption();
         if (option == 0) {
-            Library.Option.Back.executeOption();
+            Option.Back.executeOption(this);
             return true;
         } else {
-            Library.Option.Invalid.executeOption();
+            Option.Invalid.executeOption(this);
             return false;
         }
     }
@@ -86,13 +86,13 @@ public class BibliotecaApp implements Executable {
         getOption();
         switch (option) {
             case 1:
-                Library.Option.One.executeOption();
+                Option.One.executeOption(this);
                 break;
             case 2:
-                Library.Option.Two.executeOption();
+                Option.Two.executeOption(this);
                 break;
             default:
-                Library.Option.Invalid.executeOption();
+                Option.Invalid.executeOption(this);
         }
     }
 

@@ -9,25 +9,25 @@ public class Library {
     private final List<Book> books;
     private final List<String> options;
 
-    Library() {
+    public Library() {
         this.books = initBooks();
         options = initOptions();
     }
 
-    Library(List<Book> books) {
+    public Library(List<Book> books) {
         this.books = books;
         options = initOptions();
     }
 
-    String welcomeMessage() {
+    public String welcomeMessage() {
         return WELCOME_MESSAGE;
     }
 
-    List<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    List<String> getOptions() {
+    public List<String> getOptions() {
         return options;
     }
 
@@ -42,35 +42,5 @@ public class Library {
         String optionOne = "List All Books";
         String optionTwo = "Quit App";
         return List.of(optionOne, optionTwo);
-    }
-
-    enum Option {
-        One {
-            @Override
-            void executeOption() {
-                executable.printListOfBooks();
-            }
-        },
-        Two {
-            @Override
-            void executeOption() {
-                executable.quit();
-            }
-        },
-        Invalid {
-            @Override
-            void executeOption() {
-                executable.showInvalid();
-            }
-        },
-        Back {
-            @Override
-            void executeOption() {
-                executable.goBack();
-            }
-        };
-        Executable executable = new BibliotecaApp();
-
-        abstract void executeOption();
     }
 }
