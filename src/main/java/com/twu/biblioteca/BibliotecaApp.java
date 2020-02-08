@@ -55,6 +55,11 @@ public class BibliotecaApp implements Executable{
         exit = true;
     }
 
+    @Override
+    public void showInvalid() {
+        System.out.println("Please select a valid option");
+    }
+
     public void getOption() {
         option = scanner.nextInt();
     }
@@ -70,7 +75,8 @@ public class BibliotecaApp implements Executable{
                 library.option.executeOption();
                 break;
             default:
-                System.out.println("Wrong Choice");
+                library.option = Library.Option.Invalid;
+                library.option.executeOption();
         }
     }
 

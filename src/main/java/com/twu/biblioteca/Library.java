@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 
 //Job: Represent a Library
@@ -56,6 +57,12 @@ public class Library {
             @Override
             void executeOption() {
                 executable.quit();
+            }
+        },
+        Invalid {
+            @Override
+            void executeOption() {
+                executable.showInvalid();
             }
         };
         Executable executable = new BibliotecaApp();
