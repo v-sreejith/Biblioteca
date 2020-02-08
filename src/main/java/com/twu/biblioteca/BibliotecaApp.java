@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.List;
 import java.util.Scanner;
 
-public class BibliotecaApp implements Executable{
+public class BibliotecaApp implements Executable {
     Library library;
     int option;
     Scanner scanner;
@@ -47,7 +47,7 @@ public class BibliotecaApp implements Executable{
         int i = 1;
         System.out.println("\nSelect an option\n");
         for (String option : options) {
-            System.out.println(i+". "+option);
+            System.out.println(i + ". " + option);
             i += 1;
         }
         executeOption();
@@ -65,13 +65,10 @@ public class BibliotecaApp implements Executable{
         System.out.println("\nPress 0 to return to menu");
         getOption();
         if (option == 0) {
-            library.option = Library.Option.Back;
-            library.option.executeOption();
+            Library.Option.Back.executeOption();
             return true;
-        }
-        else {
-            library.option = Library.Option.Invalid;
-            library.option.executeOption();
+        } else {
+            Library.Option.Invalid.executeOption();
             return false;
         }
     }
@@ -89,16 +86,13 @@ public class BibliotecaApp implements Executable{
         getOption();
         switch (option) {
             case 1:
-                library.option = Library.Option.One;
-                library.option.executeOption();
+                Library.Option.One.executeOption();
                 break;
             case 2:
-                library.option = Library.Option.Two;
-                library.option.executeOption();
+                Library.Option.Two.executeOption();
                 break;
             default:
-                library.option = Library.Option.Invalid;
-                library.option.executeOption();
+                Library.Option.Invalid.executeOption();
         }
     }
 

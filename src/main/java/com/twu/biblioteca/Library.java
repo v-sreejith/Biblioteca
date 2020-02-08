@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 
 //Job: Represent a Library
@@ -9,7 +8,6 @@ public class Library {
 
     private final List<Book> books;
     private final List<String> options;
-    Option option;
 
     Library() {
         this.books = initBooks();
@@ -72,7 +70,7 @@ public class Library {
             }
         };
         Executable executable = new BibliotecaApp();
+
         abstract void executeOption();
     }
-
 }
