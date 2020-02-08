@@ -19,8 +19,8 @@ public class BibliotecaApp implements Executable{
     }
 
     public void start() {
+        printWelcomeMessage();
         while (!exit) {
-            printWelcomeMessage();
             printMenu(library.getOptions());
             getOption();
             executeOption();
@@ -51,13 +51,12 @@ public class BibliotecaApp implements Executable{
     }
 
     public void quit() {
-        System.out.flush();
         exit = true;
     }
 
     @Override
     public void showInvalid() {
-        System.out.println("Please select a valid option");
+        System.out.println("\nPlease select a valid option\n");
     }
 
     public void getOption() {
