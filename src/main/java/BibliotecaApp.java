@@ -10,7 +10,6 @@ public class BibliotecaApp implements Executable {
     Library library;
     int option;
     Scanner scanner;
-    static boolean exit;
 
     private void init() {
         library = new Library();
@@ -23,9 +22,7 @@ public class BibliotecaApp implements Executable {
 
     private void start() {
         printWelcomeMessage();
-        while (!exit) {
-            printMenu(library.getOptions());
-        }
+        printMenu(library.getOptions());
     }
 
     private void printWelcomeMessage() {
@@ -43,7 +40,6 @@ public class BibliotecaApp implements Executable {
             }
         }
         while (!returnToMenu());
-
     }
 
     private void printMenu(List<String> options) {
@@ -54,10 +50,6 @@ public class BibliotecaApp implements Executable {
             i += 1;
         }
         executeOption();
-    }
-
-    public void quit() {
-        exit = true;
     }
 
     public void goBack() {
