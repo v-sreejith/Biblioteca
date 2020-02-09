@@ -88,4 +88,16 @@ class LibraryTest {
 
         assertEquals("Thank you for returning the book", library.returnMessage());
     }
+
+    @Test
+    public void shouldReturnFailureMessageOnReturnOfWrongBook() {
+        Book book = mock(Book.class);
+        Book anotherBook = mock(Book.class);
+        Library library = new Library(Collections.singletonList(book));
+
+        library.checkout(1);
+        library.receiveBook(anotherBook);
+
+        assertEquals("That is not a valid book to return.", library.returnMessage());
+    }
 }

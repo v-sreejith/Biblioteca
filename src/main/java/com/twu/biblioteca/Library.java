@@ -9,6 +9,7 @@ public class Library {
     public static final String SUCCESS_CHECKOUT = "Thank you! Enjoy the book";
     public static final String FAIL_CHECKOUT = "Sorry, that book is not available";
     public static final String SUCCESS_RETURN = "Thank you for returning the book";
+    public static final String FAIL_RETURN = "That is not a valid book to return.";
 
     private final List<Book> books;
     private final List<Book> availableBooks;
@@ -80,6 +81,6 @@ public class Library {
         if (books.contains(book) && !availableBooks.contains(book)) {
             availableBooks.add(book);
             returnMessage = SUCCESS_RETURN;
-        }
+        } else returnMessage = FAIL_RETURN;
     }
 }
