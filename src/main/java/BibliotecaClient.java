@@ -111,6 +111,7 @@ public class BibliotecaClient implements Executable {
             library.receiveBook(book);
             issuedBooks.remove(book);
         }
+        System.out.println(library.returnMessage());
         while (!returnBack) {
             returnToMenu();
         }
