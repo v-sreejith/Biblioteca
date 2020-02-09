@@ -77,4 +77,15 @@ class LibraryTest {
 
         assertTrue(library.getAvailableBooks().contains(bookTwo));
     }
+
+    @Test
+    public void shouldReturnSuccessMessageOnReturn() {
+        Book book = mock(Book.class);
+        Library library = new Library(Collections.singletonList(book));
+
+        library.checkout(1);
+        library.receiveBook(book);
+
+        assertEquals("Thank you for returning the book", library.returnMessage());
+    }
 }

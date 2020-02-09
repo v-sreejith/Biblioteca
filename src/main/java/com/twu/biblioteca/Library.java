@@ -8,11 +8,13 @@ public class Library {
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
     public static final String SUCCESS_CHECKOUT = "Thank you! Enjoy the book";
     public static final String FAIL_CHECKOUT = "Sorry, that book is not available";
+    public static final String SUCCESS_RETURN = "Thank you for returning the book";
 
     private final List<Book> books;
     private final List<Book> availableBooks;
     private final List<String> options;
     private String checkoutMessage;
+    private String returnMessage;
 
     public Library() {
         this.books = initBooks();
@@ -33,6 +35,11 @@ public class Library {
     public String checkoutMessage() {
         return checkoutMessage;
     }
+
+    public String returnMessage() {
+        return returnMessage;
+    }
+
 
     public List<Book> getAvailableBooks() {
         return availableBooks;
@@ -72,6 +79,7 @@ public class Library {
     public void receiveBook(Book book) {
         if (books.contains(book) && !availableBooks.contains(book)) {
             availableBooks.add(book);
+            returnMessage = SUCCESS_RETURN;
         }
     }
 }
