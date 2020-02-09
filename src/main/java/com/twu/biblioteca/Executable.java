@@ -6,6 +6,8 @@ public interface Executable {
 
     void bookCheckout();
 
+    void returnBook();
+
     void quit();
 
     void showInvalid();

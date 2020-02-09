@@ -1,5 +1,6 @@
 import com.twu.biblioteca.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public class BibliotecaClient implements Executable {
     Scanner scanner;
     static boolean exit;
     static boolean returnBack;
+    final List<Book> issuedBooks;
 
     private void init() {
         library = new Library();
@@ -18,6 +20,7 @@ public class BibliotecaClient implements Executable {
 
     public BibliotecaClient() {
         init();
+        issuedBooks = new ArrayList<>();
     }
 
     private void start() {
@@ -49,8 +52,11 @@ public class BibliotecaClient implements Executable {
     public void bookCheckout() {
         System.out.println("Enter book index for checkout");
         getOption();
-        library.checkout(option);
+        Book book = library.checkout(option);
         System.out.println(library.checkoutMessage());
+        if (library.checkoutMessage().equals(Library.SUCCESS_CHECKOUT)) {
+            issuedBooks.add(book);
+        }
         while (!returnBack) {
             returnToMenu();
         }
@@ -89,6 +95,21 @@ public class BibliotecaClient implements Executable {
     @Override
     public void showInvalid() {
         System.out.println("\nPlease select a valid option\n");
+    }
+
+    public void returnBook() {
+        System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
+        System.out.println();
+        for (Book book : issuedBooks) {
+            System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
+            System.out.println();
+        }
+        getOption();
+        if (option >= 0 && option < issuedBooks.size()) {
+            Book book = issuedBooks.get(option);
+            library.receiveBook(book);
+            issuedBooks.remove(book);
+        }
     }
 
     private void getOption() {

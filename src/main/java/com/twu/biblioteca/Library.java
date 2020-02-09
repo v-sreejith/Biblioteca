@@ -56,14 +56,16 @@ public class Library {
         return List.of(optionOne, optionTwo, optionThree);
     }
 
-    public void checkout(int option) {
+    public Book checkout(int option) {
         try {
             Book book = getAvailableBooks().get(option - 1);
             availableBooks.remove(book);
             checkoutMessage = SUCCESS_CHECKOUT;
+            return book;
         } catch (Exception e) {
             checkoutMessage = FAIL_CHECKOUT;
         }
+        return null;
     }
 
     public void receiveBook(Book book) {
