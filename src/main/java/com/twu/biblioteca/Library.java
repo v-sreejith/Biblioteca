@@ -45,7 +45,8 @@ public class Library {
     private List<String> initOptions() {
         String optionOne = "List All Books";
         String optionTwo = "Quit App";
-        return List.of(optionOne, optionTwo);
+        String optionThree = "Checkout a Book";
+        return List.of(optionOne, optionTwo, optionThree);
     }
 
     public void checkout(Book book) {

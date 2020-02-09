@@ -45,6 +45,16 @@ public class BibliotecaApp implements Executable {
         while (!returnToMenu());
     }
 
+    @Override
+    public void bookCheckout() {
+        System.out.println("Enter book index for checkout");
+        getOption();
+        Book book = library.getAvailableBooks().get(option-1);
+        library.checkout(book);
+        while (!returnToMenu()) {
+        }
+    }
+
     private void printMenu(List<String> options) {
         int i = 1;
         System.out.println("\nSelect an option\n");
@@ -92,6 +102,9 @@ public class BibliotecaApp implements Executable {
                 break;
             case 2:
                 Option.Two.executeOption(this);
+                break;
+            case 3:
+                Option.Three.executeOption(this);
                 break;
             default:
                 Option.Invalid.executeOption(this);

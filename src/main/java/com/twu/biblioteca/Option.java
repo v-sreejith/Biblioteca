@@ -13,6 +13,12 @@ public enum Option {
             executable.quit();
         }
     },
+    Three {
+        @Override
+        public void executeOption(Executable executable) {
+            executable.bookCheckout();
+        }
+    },
     Invalid {
         @Override
         public void executeOption(Executable executable) {

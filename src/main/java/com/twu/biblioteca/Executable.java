@@ -4,6 +4,8 @@ public interface Executable {
 
     void printListOfBooks();
 
+    void bookCheckout();
+
     void quit();
 
     void showInvalid();
