@@ -3,7 +3,8 @@ import com.twu.biblioteca.*;
 import java.util.List;
 import java.util.Scanner;
 
-public class BibliotecaApp implements Executable {
+//Job: Represent a Bibliotica client
+public class BibliotecaClient implements Executable {
     Library library;
     int option;
     Scanner scanner;
@@ -15,7 +16,7 @@ public class BibliotecaApp implements Executable {
         scanner = new Scanner(System.in);
     }
 
-    public BibliotecaApp() {
+    public BibliotecaClient() {
         init();
     }
 
@@ -53,6 +54,11 @@ public class BibliotecaApp implements Executable {
         while (!returnBack) {
             returnToMenu();
         }
+    }
+
+    @Override
+    public void returnBook() {
+        System.out.println("");
     }
 
     private void printMenu(List<String> options) {
@@ -112,7 +118,7 @@ public class BibliotecaApp implements Executable {
     }
 
     public static void main(String[] args) {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        bibliotecaApp.start();
+        BibliotecaClient bibliotecaClient = new BibliotecaClient();
+        bibliotecaClient.start();
     }
 }
