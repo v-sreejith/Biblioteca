@@ -70,7 +70,7 @@ class LibraryTest {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
-        Library library = new Library(List.of(bookOne,bookTwo,bookThree));
+        Library library = new Library(List.of(bookOne, bookTwo, bookThree));
 
         library.checkout(2);
         library.receiveBook(bookTwo);

@@ -53,7 +53,8 @@ public class Library {
         String optionOne = "List All Books";
         String optionTwo = "Quit App";
         String optionThree = "Checkout a Book";
-        return List.of(optionOne, optionTwo, optionThree);
+        String optionFour = "Return a Book";
+        return List.of(optionOne, optionTwo, optionThree, optionFour);
     }
 
     public Book checkout(int option) {

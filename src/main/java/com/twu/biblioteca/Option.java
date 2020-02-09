@@ -19,6 +19,12 @@ public enum Option {
             executable.bookCheckout();
         }
     },
+    Four {
+        @Override
+        public void executeOption(Executable executable) {
+            executable.returnBook();
+        }
+    },
     Invalid {
         @Override
         public void executeOption(Executable executable) {

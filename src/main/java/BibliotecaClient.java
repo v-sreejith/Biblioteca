@@ -104,11 +104,15 @@ public class BibliotecaClient implements Executable {
             System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
             System.out.println();
         }
+        System.out.println("\nSelect a Book to return");
         getOption();
         if (option >= 0 && option < issuedBooks.size()) {
             Book book = issuedBooks.get(option);
             library.receiveBook(book);
             issuedBooks.remove(book);
+        }
+        while (!returnBack) {
+            returnToMenu();
         }
     }
 
@@ -127,6 +131,9 @@ public class BibliotecaClient implements Executable {
                 break;
             case 3:
                 Option.Three.executeOption(this);
+                break;
+            case 4:
+                Option.Four.executeOption(this);
                 break;
             default:
                 Option.Invalid.executeOption(this);
