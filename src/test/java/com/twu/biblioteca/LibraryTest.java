@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;
 
 class LibraryTest {
@@ -27,8 +28,21 @@ class LibraryTest {
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
         Library library = new Library(books);
 
-        List<Book> actualBooks = library.getBooks();
+        List<Book> actualBooks = library.getAvailableBooks();
 
         assertEquals(books, actualBooks);
+    }
+
+    @Test
+    public void shouldCheckoutABookAfterSelection() {
+        Book bookOne = mock(Book.class);
+        Book bookTwo = mock(Book.class);
+        Book bookThree = mock(Book.class);
+        List<Book> books = List.of(bookOne, bookTwo, bookThree);
+        Library library = new Library(books);
+
+        library.checkout(bookOne);
+
+        assertFalse(library.getAvailableBooks().contains(bookOne));
     }
 }

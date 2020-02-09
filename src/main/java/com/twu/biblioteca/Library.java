@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Job: Represent a Library
@@ -7,15 +8,18 @@ public class Library {
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
 
     private final List<Book> books;
+    private final List<Book> availableBooks;
     private final List<String> options;
 
     public Library() {
         this.books = initBooks();
+        availableBooks = new ArrayList<>(books);
         options = initOptions();
     }
 
     public Library(List<Book> books) {
         this.books = books;
+        availableBooks = new ArrayList<>(books);
         options = initOptions();
     }
 
@@ -23,8 +27,8 @@ public class Library {
         return WELCOME_MESSAGE;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Book> getAvailableBooks() {
+        return availableBooks;
     }
 
     public List<String> getOptions() {
@@ -42,5 +46,9 @@ public class Library {
         String optionOne = "List All Books";
         String optionTwo = "Quit App";
         return List.of(optionOne, optionTwo);
+    }
+
+    public void checkout(Book book) {
+        availableBooks.remove(book);
     }
 }

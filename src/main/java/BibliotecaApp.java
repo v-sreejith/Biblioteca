@@ -34,7 +34,7 @@ public class BibliotecaApp implements Executable {
 
     public void printListOfBooks() {
         do {
-            List<Book> books = library.getBooks();
+            List<Book> books = library.getAvailableBooks();
             System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
             System.out.println();
             for (Book book : books) {
