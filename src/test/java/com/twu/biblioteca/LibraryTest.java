@@ -56,4 +56,13 @@ class LibraryTest {
 
         assertEquals("Thank you! Enjoy the book",library.checkoutMessage());
     }
+
+    @Test
+    @DisplayName("Test should throw exception if wrong book is selected for checkout")
+    public void shouldThrowExceptionForWrongCheckout() {
+        Book book = mock(Book.class);
+        Library library = new Library();
+
+        assertThrows(InvalidBookSelectedException.class,() ->library.checkout(book));
+    }
 }

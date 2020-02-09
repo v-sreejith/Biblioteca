@@ -7,6 +7,7 @@ import java.util.List;
 public class Library {
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
     public static final String SUCCESS_CHECKOUT = "Thank you! Enjoy the book";
+    public static final String FAIL_CHECKOUT = "Sorry, that book is not available";
 
     private final List<Book> books;
     private final List<Book> availableBooks;
@@ -60,6 +61,7 @@ public class Library {
             availableBooks.remove(book);
             checkoutMessage = SUCCESS_CHECKOUT;
         } else {
+            checkoutMessage = FAIL_CHECKOUT;
             throw new InvalidBookSelectedException();
         }
     }
