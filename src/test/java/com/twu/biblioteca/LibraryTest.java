@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -35,34 +34,34 @@ class LibraryTest {
     }
 
     @Test
-    public void shouldCheckoutABookAfterSelection() throws InvalidBookSelectedException {
+    public void shouldCheckoutABookAfterSelection() {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
         Library library = new Library(books);
 
-        library.checkout(bookOne);
+        library.checkout(1);
 
         assertFalse(library.getAvailableBooks().contains(bookOne));
     }
 
     @Test
-    public void shouldReturnSuccessMessageOnCheckout() throws InvalidBookSelectedException {
+    public void shouldReturnSuccessMessageOnCheckout() {
         Book book = mock(Book.class);
         Library library = new Library(Collections.singletonList(book));
 
-        library.checkout(book);
+        library.checkout(1);
 
-        assertEquals("Thank you! Enjoy the book",library.checkoutMessage());
+        assertEquals("Thank you! Enjoy the book", library.checkoutMessage());
     }
 
     @Test
-    @DisplayName("Test should throw exception if wrong book is selected for checkout")
-    public void shouldThrowExceptionForWrongCheckout() {
-        Book book = mock(Book.class);
+    public void shouldReturnFailureForWrongCheckout() {
         Library library = new Library();
 
-        assertThrows(InvalidBookSelectedException.class,() ->library.checkout(book));
+        library.checkout(4);
+
+        assertEquals("Sorry, that book is not available", library.checkoutMessage());
     }
 }

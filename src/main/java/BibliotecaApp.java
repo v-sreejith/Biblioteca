@@ -48,12 +48,8 @@ public class BibliotecaApp implements Executable {
     public void bookCheckout() {
         System.out.println("Enter book index for checkout");
         getOption();
-        try {
-            Book book = library.getAvailableBooks().get(option - 1);
-            library.checkout(book);
-        } catch (Exception e) {
-            System.out.println("Sorry, that book is not available");
-        }
+        library.checkout(option);
+        System.out.println(library.checkoutMessage());
         while (!returnBack) {
             returnToMenu();
         }

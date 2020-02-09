@@ -56,13 +56,13 @@ public class Library {
         return List.of(optionOne, optionTwo, optionThree);
     }
 
-    public void checkout(Book book) throws InvalidBookSelectedException {
-        if (availableBooks.contains(book)) {
+    public void checkout(int option) {
+        try {
+            Book book = getAvailableBooks().get(option - 1);
             availableBooks.remove(book);
             checkoutMessage = SUCCESS_CHECKOUT;
-        } else {
+        } catch (Exception e) {
             checkoutMessage = FAIL_CHECKOUT;
-            throw new InvalidBookSelectedException();
         }
     }
 }
