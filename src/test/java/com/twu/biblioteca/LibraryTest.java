@@ -1,11 +1,12 @@
 package com.twu.biblioteca;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class LibraryTest {
@@ -34,7 +35,7 @@ class LibraryTest {
     }
 
     @Test
-    public void shouldCheckoutABookAfterSelection() {
+    public void shouldCheckoutABookAfterSelection() throws InvalidBookSelectedException {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
@@ -44,5 +45,15 @@ class LibraryTest {
         library.checkout(bookOne);
 
         assertFalse(library.getAvailableBooks().contains(bookOne));
+    }
+
+    @Test
+    public void shouldReturnSuccessMessageOnCheckout() throws InvalidBookSelectedException {
+        Book book = mock(Book.class);
+        Library library = new Library(Collections.singletonList(book));
+
+        library.checkout(book);
+
+        assertEquals("Thank you! Enjoy the book",library.checkoutMessage());
     }
 }

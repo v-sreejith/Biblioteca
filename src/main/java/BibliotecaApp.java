@@ -1,7 +1,4 @@
-import com.twu.biblioteca.Book;
-import com.twu.biblioteca.Executable;
-import com.twu.biblioteca.Library;
-import com.twu.biblioteca.Option;
+import com.twu.biblioteca.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +8,7 @@ public class BibliotecaApp implements Executable {
     int option;
     Scanner scanner;
     static boolean exit;
+    static boolean returnBack;
 
     private void init() {
         library = new Library();
@@ -41,17 +39,23 @@ public class BibliotecaApp implements Executable {
                 System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
                 System.out.println();
             }
+            returnToMenu();
         }
-        while (!returnToMenu());
+        while (!returnBack);
     }
 
     @Override
     public void bookCheckout() {
         System.out.println("Enter book index for checkout");
         getOption();
-        Book book = library.getAvailableBooks().get(option-1);
-        library.checkout(book);
-        while (!returnToMenu()) {
+        try {
+            Book book = library.getAvailableBooks().get(option - 1);
+            library.checkout(book);
+        } catch (Exception e) {
+            System.out.println("Sorry, that book is not available");
+        }
+        while (!returnBack) {
+            returnToMenu();
         }
     }
 
@@ -73,15 +77,15 @@ public class BibliotecaApp implements Executable {
         printMenu(library.getOptions());
     }
 
-    private boolean returnToMenu() {
+    private void returnToMenu() {
         System.out.println("\nPress 0 to return to menu");
         getOption();
         if (option == 0) {
             Option.Back.executeOption(this);
-            return true;
+            returnBack = true;
         } else {
             Option.Invalid.executeOption(this);
-            return false;
+            returnBack = false;
         }
     }
 

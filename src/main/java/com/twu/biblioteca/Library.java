@@ -6,10 +6,12 @@ import java.util.List;
 //Job: Represent a Library
 public class Library {
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+    public static final String SUCCESS_CHECKOUT = "Thank you! Enjoy the book";
 
     private final List<Book> books;
     private final List<Book> availableBooks;
     private final List<String> options;
+    private String checkoutMessage;
 
     public Library() {
         this.books = initBooks();
@@ -25,6 +27,10 @@ public class Library {
 
     public String welcomeMessage() {
         return WELCOME_MESSAGE;
+    }
+
+    public String checkoutMessage() {
+        return checkoutMessage;
     }
 
     public List<Book> getAvailableBooks() {
@@ -49,7 +55,12 @@ public class Library {
         return List.of(optionOne, optionTwo, optionThree);
     }
 
-    public void checkout(Book book) {
-        availableBooks.remove(book);
+    public void checkout(Book book) throws InvalidBookSelectedException {
+        if (availableBooks.contains(book)) {
+            availableBooks.remove(book);
+            checkoutMessage = SUCCESS_CHECKOUT;
+        } else {
+            throw new InvalidBookSelectedException();
+        }
     }
 }
