@@ -56,11 +56,6 @@ public class BibliotecaClient implements Executable {
         }
     }
 
-    @Override
-    public void returnBook() {
-        System.out.println("");
-    }
-
     private void printMenu(List<String> options) {
         int i = 1;
         System.out.println("\nSelect an option\n");

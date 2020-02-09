@@ -65,4 +65,10 @@ public class Library {
             checkoutMessage = FAIL_CHECKOUT;
         }
     }
+
+    public void receiveBook(Book book) {
+        if (books.contains(book) && !availableBooks.contains(book)) {
+            availableBooks.add(book);
+        }
+    }
 }

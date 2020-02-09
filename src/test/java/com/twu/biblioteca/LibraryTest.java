@@ -64,4 +64,17 @@ class LibraryTest {
 
         assertEquals("Sorry, that book is not available", library.checkoutMessage());
     }
+
+    @Test
+    public void shouldReceiveABookWhichWasIssued() {
+        Book bookOne = mock(Book.class);
+        Book bookTwo = mock(Book.class);
+        Book bookThree = mock(Book.class);
+        Library library = new Library(List.of(bookOne,bookTwo,bookThree));
+
+        library.checkout(2);
+        library.receiveBook(bookTwo);
+
+        assertTrue(library.getAvailableBooks().contains(bookTwo));
+    }
 }
