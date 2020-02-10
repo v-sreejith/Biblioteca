@@ -110,7 +110,7 @@ public class BibliotecaClient implements UserInterface {
         getOption();
         if (option >= 0 && option < issuedBooks.size()) {
             Book book = issuedBooks.get(option);
-            library.receiveBook(book);
+            biblioteca.returnLibraryBook(book);
             issuedBooks.remove(book);
         }
         System.out.println(library.returnMessage());
