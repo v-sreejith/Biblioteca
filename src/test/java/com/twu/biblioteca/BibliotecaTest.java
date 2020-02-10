@@ -30,6 +30,16 @@ class BibliotecaTest {
     }
 
     @Test
+    public void shouldReturnListOfIssuedBooksFromLibrary() {
+        Library library = mock(Library.class);
+        Biblioteca biblioteca = new Biblioteca(library);
+
+        biblioteca.getIssuedBooks();
+
+        verify(library, times(1)).getIssuedBooks();
+    }
+
+    @Test
     public void shouldCheckoutABookFromLibrary() throws Exception {
         Library library = mock(Library.class);
         Biblioteca biblioteca = new Biblioteca(library);

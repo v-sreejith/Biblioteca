@@ -16,6 +16,8 @@ public class Biblioteca {
 
     public Biblioteca(Library library) {
         this.library = library;
+        returnMessage = FAIL_RETURN;
+        checkoutMessage = FAIL_CHECKOUT;
     }
 
     public String getWelcomeMessage() {
@@ -24,6 +26,10 @@ public class Biblioteca {
 
     public List<Book> getLibraryBooks() {
         return library.getAvailableBooks();
+    }
+
+    public List<Book> getIssuedBooks() {
+        return library.getIssuedBooks();
     }
 
     public void checkoutLibraryBook(int option) {

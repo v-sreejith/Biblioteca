@@ -1,6 +1,5 @@
 import com.twu.biblioteca.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +11,6 @@ public class BibliotecaClient implements UserInterface {
     Scanner scanner;
     static boolean exit;
     static boolean returnBack;
-    final List<Book> issuedBooks;
 
     private void init() {
         library = new Library(initBooks());
@@ -29,7 +27,6 @@ public class BibliotecaClient implements UserInterface {
 
     public BibliotecaClient() {
         init();
-        issuedBooks = new ArrayList<>();
     }
 
     private void start() {
@@ -51,9 +48,10 @@ public class BibliotecaClient implements UserInterface {
             System.out.println();
         }
     }
+
     public void printListOfBooks() {
         do {
-            List<Book> books = library.getAvailableBooks();
+            List<Book> books = biblioteca.getLibraryBooks();
             printBooks(books);
             returnToMenu();
         }
@@ -62,10 +60,11 @@ public class BibliotecaClient implements UserInterface {
 
     @Override
     public void bookCheckout() {
-        printListOfBooks();
+        printBooks(biblioteca.getLibraryBooks());
         System.out.println("\nEnter book index for checkout");
         getOption();
         biblioteca.checkoutLibraryBook(option);
+        System.out.println(biblioteca.getCheckoutMessage());
         while (!returnBack) {
             returnToMenu();
         }
@@ -107,13 +106,13 @@ public class BibliotecaClient implements UserInterface {
     }
 
     public void returnBook() {
+        List<Book> issuedBooks = biblioteca.getIssuedBooks();
         printBooks(issuedBooks);
         System.out.println("\nSelect a Book to return");
         getOption();
-        if (option >= 0 && option < issuedBooks.size()) {
-            Book book = issuedBooks.get(option);
+        if (option > 0 && option <= issuedBooks.size()) {
+            Book book = issuedBooks.get(option-1);
             biblioteca.returnLibraryBook(book);
-            issuedBooks.remove(book);
         }
         System.out.println(biblioteca.getReturnMessage());
         while (!returnBack) {
