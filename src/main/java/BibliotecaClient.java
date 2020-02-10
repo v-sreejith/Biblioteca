@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 //Job: Represent a Bibliotica client
-public class BibliotecaClient implements Executable {
+public class BibliotecaClient implements UserInterface {
     Library library;
     int option;
     Scanner scanner;

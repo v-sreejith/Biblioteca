@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public interface Executable {
+public interface UserInterface {
 
     void printListOfBooks();
 
