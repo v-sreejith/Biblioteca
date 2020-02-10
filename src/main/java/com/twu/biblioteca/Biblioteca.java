@@ -23,4 +23,8 @@ public class Biblioteca {
     public Book checkoutLibraryBook(int option) {
         return library.checkout(option);
     }
+
+    public void returnLibraryBook(Book book) {
+        library.receiveBook(book);
+    }
 }

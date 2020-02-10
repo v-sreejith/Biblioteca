@@ -40,4 +40,15 @@ class BibliotecaTest {
 
         verify(library, times(1)).checkout(1);
     }
+
+    @Test
+    public void shouldReturnABookBackToLibrary() {
+        Book book = mock(Book.class);
+        Library library = mock(Library.class);
+        Biblioteca biblioteca = new Biblioteca(library);
+
+        biblioteca.returnLibraryBook(book);
+
+        verify(library, times(1)).receiveBook(book);
+    }
 }
