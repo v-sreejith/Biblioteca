@@ -11,16 +11,6 @@ import static org.mockito.Mockito.mock;
 class LibraryTest {
 
     @Test
-    public void shouldGreetCustomerWithWelcomeMessage() {
-        Library library = new Library();
-        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
-
-        String actualMessage = library.welcomeMessage();
-
-        assertEquals(expectedMessage, actualMessage);
-    }
-
-    @Test
     public void shouldReturnListOfBooks() {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
