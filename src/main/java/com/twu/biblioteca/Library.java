@@ -5,14 +5,11 @@ import java.util.List;
 
 //Job: Represent a Library
 public class Library {
-    public static final String SUCCESS_CHECKOUT = "Thank you! Enjoy the book";
     public static final String SUCCESS_RETURN = "Thank you for returning the book";
     public static final String FAIL_RETURN = "That is not a valid book to return.";
-    public static final String FAIL_CHECKOUT = "Sorry, that book is not available";
 
     private final List<Book> books;
     private final List<Book> availableBooks;
-    private String checkoutMessage;
     private String returnMessage;
 
     public Library() {
@@ -23,10 +20,6 @@ public class Library {
     public Library(List<Book> books) {
         this.books = books;
         availableBooks = new ArrayList<>(books);
-    }
-
-    public String checkoutMessage() {
-        return checkoutMessage;
     }
 
     public String returnMessage() {
@@ -44,16 +37,13 @@ public class Library {
         return List.of(bookOne, bookTwo, bookThree);
     }
 
-    public Book checkout(int option) {
+    public void checkout(int option) throws Exception{
         try {
             Book book = getAvailableBooks().get(option - 1);
             availableBooks.remove(book);
-            checkoutMessage = SUCCESS_CHECKOUT;
-            return book;
         } catch (Exception e) {
-            checkoutMessage = FAIL_CHECKOUT;
+            throw new Exception(e);
         }
-        return null;
     }
 
     public void receiveBook(Book book) {

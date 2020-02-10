@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +23,7 @@ class LibraryTest {
     }
 
     @Test
-    public void shouldCheckoutABookAfterSelection() {
+    public void shouldCheckoutABookAfterSelection() throws Exception {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
@@ -37,26 +36,7 @@ class LibraryTest {
     }
 
     @Test
-    public void shouldReturnSuccessMessageOnCheckout() {
-        Book book = mock(Book.class);
-        Library library = new Library(Collections.singletonList(book));
-
-        library.checkout(1);
-
-        assertEquals("Thank you! Enjoy the book", library.checkoutMessage());
-    }
-
-    @Test
-    public void shouldReturnFailureForWrongCheckout() {
-        Library library = new Library();
-
-        library.checkout(4);
-
-        assertEquals("Sorry, that book is not available", library.checkoutMessage());
-    }
-
-    @Test
-    public void shouldReceiveABookWhichWasIssued() {
+    public void shouldReceiveABookWhichWasIssued() throws Exception {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
@@ -66,28 +46,5 @@ class LibraryTest {
         library.receiveBook(bookTwo);
 
         assertTrue(library.getAvailableBooks().contains(bookTwo));
-    }
-
-    @Test
-    public void shouldReturnSuccessMessageOnReturn() {
-        Book book = mock(Book.class);
-        Library library = new Library(Collections.singletonList(book));
-
-        library.checkout(1);
-        library.receiveBook(book);
-
-        assertEquals("Thank you for returning the book", library.returnMessage());
-    }
-
-    @Test
-    public void shouldReturnFailureMessageOnReturnOfWrongBook() {
-        Book book = mock(Book.class);
-        Book anotherBook = mock(Book.class);
-        Library library = new Library(Collections.singletonList(book));
-
-        library.checkout(1);
-        library.receiveBook(anotherBook);
-
-        assertEquals("That is not a valid book to return.", library.returnMessage());
     }
 }

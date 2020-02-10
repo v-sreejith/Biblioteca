@@ -23,16 +23,14 @@ class BibliotecaTest {
     public void shouldReturnListOfBooksInLibrary() {
         Library library = mock(Library.class);
         Biblioteca biblioteca = new Biblioteca(library);
-        Book bookOne = new Book("Wings of Fire", "A P J Abdul Kalam", 2001);
-        Book bookTwo = new Book("Kite Runner", "Khaled Hosseini", 2003);
-        Book bookThree = new Book("Hunger Games", "Suzzane", 2009);
-        List<Book> books = List.of(bookOne, bookTwo, bookThree);
 
-        assertThat(biblioteca.getLibraryBooks(), is(equalTo(books)));
+        biblioteca.getLibraryBooks();
+
+        verify(library, times(1)).getAvailableBooks();
     }
 
     @Test
-    public void shouldCheckoutABookFromLibrary() {
+    public void shouldCheckoutABookFromLibrary() throws Exception {
         Library library = mock(Library.class);
         Biblioteca biblioteca = new Biblioteca(library);
 
@@ -50,5 +48,27 @@ class BibliotecaTest {
         biblioteca.returnLibraryBook(book);
 
         verify(library, times(1)).receiveBook(book);
+    }
+
+    @Test
+    public void shouldReturnSuccessMessageOnCheckout() {
+        Book book = mock(Book.class);
+        Library library = new Library(List.of(book));
+        Biblioteca biblioteca = new Biblioteca(library);
+
+        biblioteca.checkoutLibraryBook(1);
+
+        assertThat(biblioteca.getCheckoutMessage(),is(equalTo("Thank you! Enjoy the book")));
+    }
+
+    @Test
+    public void shouldReturnFailureForWrongCheckout() {
+        Book book = mock(Book.class);
+        Library library = new Library(List.of(book));
+        Biblioteca biblioteca = new Biblioteca(library);
+
+        biblioteca.checkoutLibraryBook(10);
+
+        assertThat(biblioteca.getCheckoutMessage(),is(equalTo("Sorry, that book is not available")));
     }
 }
