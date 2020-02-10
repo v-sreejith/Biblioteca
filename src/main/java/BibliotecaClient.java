@@ -27,7 +27,6 @@ public class BibliotecaClient implements UserInterface {
         return List.of(bookOne, bookTwo, bookThree);
     }
 
-
     public BibliotecaClient() {
         init();
         issuedBooks = new ArrayList<>();
@@ -44,15 +43,18 @@ public class BibliotecaClient implements UserInterface {
         System.out.println(biblioteca.getWelcomeMessage());
     }
 
+    private void printBooks(List<Book> books) {
+        System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
+        System.out.println();
+        for (Book book : books) {
+            System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
+            System.out.println();
+        }
+    }
     public void printListOfBooks() {
         do {
             List<Book> books = library.getAvailableBooks();
-            System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
-            System.out.println();
-            for (Book book : books) {
-                System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
-                System.out.println();
-            }
+            printBooks(books);
             returnToMenu();
         }
         while (!returnBack);
@@ -60,7 +62,8 @@ public class BibliotecaClient implements UserInterface {
 
     @Override
     public void bookCheckout() {
-        System.out.println("Enter book index for checkout");
+        printListOfBooks();
+        System.out.println("\nEnter book index for checkout");
         getOption();
         biblioteca.checkoutLibraryBook(option);
         while (!returnBack) {
@@ -104,12 +107,7 @@ public class BibliotecaClient implements UserInterface {
     }
 
     public void returnBook() {
-        System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
-        System.out.println();
-        for (Book book : issuedBooks) {
-            System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
-            System.out.println();
-        }
+        printBooks(issuedBooks);
         System.out.println("\nSelect a Book to return");
         getOption();
         if (option >= 0 && option < issuedBooks.size()) {
