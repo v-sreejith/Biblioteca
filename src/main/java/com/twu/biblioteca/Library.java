@@ -12,20 +12,17 @@ public class Library {
 
     private final List<Book> books;
     private final List<Book> availableBooks;
-    private final List<String> options;
     private String checkoutMessage;
     private String returnMessage;
 
     public Library() {
         this.books = initBooks();
         availableBooks = new ArrayList<>(books);
-        options = initOptions();
     }
 
     public Library(List<Book> books) {
         this.books = books;
         availableBooks = new ArrayList<>(books);
-        options = initOptions();
     }
 
     public String checkoutMessage() {
@@ -36,13 +33,8 @@ public class Library {
         return returnMessage;
     }
 
-
     public List<Book> getAvailableBooks() {
         return availableBooks;
-    }
-
-    public List<String> getOptions() {
-        return options;
     }
 
     private List<Book> initBooks() {
@@ -50,14 +42,6 @@ public class Library {
         Book bookTwo = new Book("Kite Runner", "Khaled Hosseini", 2003);
         Book bookThree = new Book("Hunger Games", "Suzzane", 2009);
         return List.of(bookOne, bookTwo, bookThree);
-    }
-
-    private List<String> initOptions() {
-        String optionOne = "List All Books";
-        String optionTwo = "Quit App";
-        String optionThree = "Checkout a Book";
-        String optionFour = "Return a Book";
-        return List.of(optionOne, optionTwo, optionThree, optionFour);
     }
 
     public Book checkout(int option) {
