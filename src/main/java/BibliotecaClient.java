@@ -109,7 +109,7 @@ public class BibliotecaClient implements UserInterface {
             biblioteca.returnLibraryBook(book);
             issuedBooks.remove(book);
         }
-        System.out.println(library.returnMessage());
+        System.out.println(biblioteca.getReturnMessage());
         while (!returnBack) {
             returnToMenu();
         }

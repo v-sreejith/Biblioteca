@@ -5,12 +5,8 @@ import java.util.List;
 
 //Job: Represent a Library
 public class Library {
-    public static final String SUCCESS_RETURN = "Thank you for returning the book";
-    public static final String FAIL_RETURN = "That is not a valid book to return.";
-
     private final List<Book> books;
     private final List<Book> availableBooks;
-    private String returnMessage;
 
     public Library() {
         this.books = initBooks();
@@ -20,10 +16,6 @@ public class Library {
     public Library(List<Book> books) {
         this.books = books;
         availableBooks = new ArrayList<>(books);
-    }
-
-    public String returnMessage() {
-        return returnMessage;
     }
 
     public List<Book> getAvailableBooks() {
@@ -37,7 +29,7 @@ public class Library {
         return List.of(bookOne, bookTwo, bookThree);
     }
 
-    public void checkout(int option) throws Exception{
+    public void checkout(int option) throws Exception {
         try {
             Book book = getAvailableBooks().get(option - 1);
             availableBooks.remove(book);
@@ -46,10 +38,9 @@ public class Library {
         }
     }
 
-    public void receiveBook(Book book) {
+    public void receiveBook(Book book) throws Exception {
         if (books.contains(book) && !availableBooks.contains(book)) {
             availableBooks.add(book);
-            returnMessage = SUCCESS_RETURN;
-        } else returnMessage = FAIL_RETURN;
+        } else throw new Exception();
     }
 }
