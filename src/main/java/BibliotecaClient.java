@@ -16,7 +16,7 @@ public class BibliotecaClient implements UserInterface {
 
     private void init() {
         library = new Library();
-        new Biblioteca(library);
+        biblioteca = new Biblioteca(library);
         scanner = new Scanner(System.in);
     }
 
@@ -28,7 +28,7 @@ public class BibliotecaClient implements UserInterface {
     private void start() {
         printWelcomeMessage();
         while (!exit) {
-            printMenu(library.getOptions());
+            printMenu();
         }
     }
 
@@ -64,11 +64,11 @@ public class BibliotecaClient implements UserInterface {
         }
     }
 
-    private void printMenu(List<String> options) {
+    private void printMenu() {
         int i = 1;
         System.out.println("\nSelect an option\n");
-        for (String option : options) {
-            System.out.println(i + ". " + option);
+        for (Option option : Option.values()) {
+            System.out.println(i + ". " + option.value);
             i += 1;
         }
         executeOption();
@@ -79,7 +79,7 @@ public class BibliotecaClient implements UserInterface {
     }
 
     public void goBack() {
-        printMenu(library.getOptions());
+        printMenu();
     }
 
     private void returnToMenu() {
