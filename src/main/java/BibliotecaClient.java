@@ -54,7 +54,7 @@ public class BibliotecaClient implements UserInterface {
     public void bookCheckout() {
         System.out.println("Enter book index for checkout");
         getOption();
-        Book book = library.checkout(option);
+        Book book = biblioteca.checkoutLibraryBook(option);
         System.out.println(library.checkoutMessage());
         if (library.checkoutMessage().equals(Library.SUCCESS_CHECKOUT)) {
             issuedBooks.add(book);

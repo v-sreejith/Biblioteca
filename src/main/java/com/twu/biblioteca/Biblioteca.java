@@ -20,7 +20,7 @@ public class Biblioteca {
         return library.getAvailableBooks();
     }
 
-    public void checkoutLibraryBook(int option) {
-        library.checkout(option);
+    public Book checkoutLibraryBook(int option) {
+        return library.checkout(option);
     }
 }
