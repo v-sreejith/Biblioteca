@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 //Job: Represent a Bibliotica client
 public class BibliotecaClient implements UserInterface {
+    Biblioteca biblioteca;
     Library library;
     int option;
     Scanner scanner;
@@ -15,6 +16,7 @@ public class BibliotecaClient implements UserInterface {
 
     private void init() {
         library = new Library();
+        new Biblioteca(library);
         scanner = new Scanner(System.in);
     }
 
@@ -31,7 +33,7 @@ public class BibliotecaClient implements UserInterface {
     }
 
     private void printWelcomeMessage() {
-        System.out.println(library.welcomeMessage());
+        System.out.println(biblioteca.getWelcomeMessage());
     }
 
     public void printListOfBooks() {
