@@ -8,11 +8,6 @@ public class Library {
     private final List<Book> books;
     private final List<Book> availableBooks;
 
-    public Library() {
-        this.books = initBooks();
-        availableBooks = new ArrayList<>(books);
-    }
-
     public Library(List<Book> books) {
         this.books = books;
         availableBooks = new ArrayList<>(books);
@@ -20,13 +15,6 @@ public class Library {
 
     public List<Book> getAvailableBooks() {
         return availableBooks;
-    }
-
-    private List<Book> initBooks() {
-        Book bookOne = new Book("Wings of Fire", "A P J Abdul Kalam", 2001);
-        Book bookTwo = new Book("Kite Runner", "Khaled Hosseini", 2003);
-        Book bookThree = new Book("Hunger Games", "Suzzane", 2009);
-        return List.of(bookOne, bookTwo, bookThree);
     }
 
     public void checkout(int option) throws Exception {

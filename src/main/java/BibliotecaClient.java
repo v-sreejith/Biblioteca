@@ -15,10 +15,18 @@ public class BibliotecaClient implements UserInterface {
     final List<Book> issuedBooks;
 
     private void init() {
-        library = new Library();
+        library = new Library(initBooks());
         biblioteca = new Biblioteca(library);
         scanner = new Scanner(System.in);
     }
+
+    private List<Book> initBooks() {
+        Book bookOne = new Book("Wings of Fire", "A P J Abdul Kalam", 2001);
+        Book bookTwo = new Book("Kite Runner", "Khaled Hosseini", 2003);
+        Book bookThree = new Book("Hunger Games", "Suzzane", 2009);
+        return List.of(bookOne, bookTwo, bookThree);
+    }
+
 
     public BibliotecaClient() {
         init();
