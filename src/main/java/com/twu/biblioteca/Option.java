@@ -1,42 +1,35 @@
 package com.twu.biblioteca;
 
 public enum Option {
-    One {
+    One("List All Books") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.printListOfBooks();
         }
     },
-    Two {
+    Two("Quit App") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.quit();
         }
     },
-    Three {
+    Three("Checkout a Book") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.bookCheckout();
         }
     },
-    Four {
+    Four("Return a Book") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.returnBook();
         }
-    },
-    Invalid {
-        @Override
-        public void executeOption(UserInterface executable) {
-            executable.showInvalid();
-        }
-    },
-    Back {
-        @Override
-        public void executeOption(UserInterface executable) {
-            executable.goBack();
-        }
     };
+    public String value;
+
+    Option(String value) {
+        this.value = value;
+    }
 
     public abstract void executeOption(UserInterface executable);
 }

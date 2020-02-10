@@ -86,10 +86,10 @@ public class BibliotecaClient implements UserInterface {
         System.out.println("\nPress 0 to return to menu");
         getOption();
         if (option == 0) {
-            Option.Back.executeOption(this);
+            goBack();
             returnBack = true;
         } else {
-            Option.Invalid.executeOption(this);
+            showInvalid();
             returnBack = false;
         }
     }
@@ -139,7 +139,7 @@ public class BibliotecaClient implements UserInterface {
                 Option.Four.executeOption(this);
                 break;
             default:
-                Option.Invalid.executeOption(this);
+                showInvalid();
         }
     }
 
