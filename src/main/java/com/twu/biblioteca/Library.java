@@ -5,7 +5,6 @@ import java.util.List;
 
 //Job: Represent a Library
 public class Library {
-    public static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
     public static final String SUCCESS_CHECKOUT = "Thank you! Enjoy the book";
     public static final String SUCCESS_RETURN = "Thank you for returning the book";
     public static final String FAIL_RETURN = "That is not a valid book to return.";
@@ -27,10 +26,6 @@ public class Library {
         this.books = books;
         availableBooks = new ArrayList<>(books);
         options = initOptions();
-    }
-
-    public String welcomeMessage() {
-        return WELCOME_MESSAGE;
     }
 
     public String checkoutMessage() {
