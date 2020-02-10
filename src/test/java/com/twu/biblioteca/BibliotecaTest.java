@@ -35,10 +35,9 @@ class BibliotecaTest {
     public void shouldCheckoutABookFromLibrary() {
         Library library = mock(Library.class);
         Biblioteca biblioteca = new Biblioteca(library);
-        Book book = mock(Book.class);
 
-        biblioteca.checkoutLibraryBook(book);
+        biblioteca.checkoutLibraryBook(1);
 
-        verify(library, times(1)).receiveBook(book);
+        verify(library, times(1)).checkout(1);
     }
 }
