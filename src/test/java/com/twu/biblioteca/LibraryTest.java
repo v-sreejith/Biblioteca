@@ -33,6 +33,7 @@ class LibraryTest {
         library.checkout(1);
 
         assertFalse(library.getAvailableBooks().contains(bookOne));
+        assertTrue(library.getIssuedBooks().contains(bookOne));
     }
 
     @Test
@@ -46,5 +47,6 @@ class LibraryTest {
         library.receiveBook(bookTwo);
 
         assertTrue(library.getAvailableBooks().contains(bookTwo));
+        assertFalse(library.getIssuedBooks().contains(bookTwo));
     }
 }
