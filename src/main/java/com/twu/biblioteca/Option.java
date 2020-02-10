@@ -1,25 +1,25 @@
 package com.twu.biblioteca;
 
 public enum Option {
-    One("List All Books") {
+    LIST_BOOKS("List All Books") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.printListOfBooks();
         }
     },
-    Two("Quit App") {
+    QUIT_APP("Quit App") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.quit();
         }
     },
-    Three("Checkout a Book") {
+    CHECKOUT_BOOK("Checkout a Book") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.bookCheckout();
         }
     },
-    Four("Return a Book") {
+    RETURN_BOOK("Return a Book") {
         @Override
         public void executeOption(UserInterface executable) {
             executable.returnBook();

@@ -127,16 +127,16 @@ public class BibliotecaClient implements UserInterface {
         getOption();
         switch (option) {
             case 1:
-                Option.One.executeOption(this);
+                Option.LIST_BOOKS.executeOption(this);
                 break;
             case 2:
-                Option.Two.executeOption(this);
+                Option.QUIT_APP.executeOption(this);
                 break;
             case 3:
-                Option.Three.executeOption(this);
+                Option.CHECKOUT_BOOK.executeOption(this);
                 break;
             case 4:
-                Option.Four.executeOption(this);
+                Option.RETURN_BOOK.executeOption(this);
                 break;
             default:
                 showInvalid();
