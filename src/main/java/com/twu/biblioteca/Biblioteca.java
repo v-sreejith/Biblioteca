@@ -34,7 +34,7 @@ public class Biblioteca {
 
     public void checkoutLibraryBook(int option) {
         try {
-            library.checkout(option);
+            library.checkoutBook(option);
             checkoutMessage = SUCCESS_CHECKOUT;
         } catch (Exception e) {
             checkoutMessage = FAIL_CHECKOUT;

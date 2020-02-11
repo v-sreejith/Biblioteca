@@ -46,7 +46,7 @@ class BibliotecaTest {
 
         biblioteca.checkoutLibraryBook(1);
 
-        verify(library, times(1)).checkout(1);
+        verify(library, times(1)).checkoutBook(1);
     }
 
     @Test

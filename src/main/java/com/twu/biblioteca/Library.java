@@ -27,7 +27,7 @@ public class Library {
         return issuedBooks;
     }
 
-    public void checkout(int option) throws Exception {
+    public void checkoutBook(int option) throws Exception {
         try {
             Book book = getAvailableBooks().get(option - 1);
             availableBooks.remove(book);
