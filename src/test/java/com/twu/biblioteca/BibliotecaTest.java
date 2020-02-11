@@ -117,9 +117,8 @@ class BibliotecaTest {
 
     @Test
     public void shouldCheckoutAMovieFromLibrary() {
-        Book bookOne = mock(Book.class);
         Movie movie = mock(Movie.class);
-        Library library = new Library(List.of(bookOne), List.of(movie));
+        Library library = mock(Library.class);
         Biblioteca biblioteca = new Biblioteca(library);
 
         biblioteca.checkoutLibraryMovie(movie);
