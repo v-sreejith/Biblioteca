@@ -57,4 +57,8 @@ public class Biblioteca {
             returnMessage = FAIL_RETURN;
         }
     }
+
+    public String getLibraryMovies() {
+        return null;
+    }
 }

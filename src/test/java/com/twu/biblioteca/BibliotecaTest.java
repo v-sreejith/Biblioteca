@@ -104,4 +104,13 @@ class BibliotecaTest {
 
         assertThat(biblioteca.getReturnMessage(), is(equalTo("That is not a valid book to return.")));
     }
+
+    @Test
+    public void shouldReturnAvailableMoviesFromLibrary() {
+        Book bookOne = mock(Book.class);
+        Library library = new Library(List.of(bookOne));
+        Biblioteca biblioteca = new Biblioteca(library);
+
+        assertThat(biblioteca.getLibraryMovies(),is(equalTo(null)));
+    }
 }
