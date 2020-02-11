@@ -114,4 +114,16 @@ class BibliotecaTest {
 
         assertThat(biblioteca.getLibraryMovies(), is(equalTo(List.of(movie))));
     }
+
+    @Test
+    public void shouldCheckoutAMovieFromLibrary() {
+        Book bookOne = mock(Book.class);
+        Movie movie = mock(Movie.class);
+        Library library = new Library(List.of(bookOne), List.of(movie));
+        Biblioteca biblioteca = new Biblioteca(library);
+
+        biblioteca.checkoutLibraryMovie(movie);
+
+        verify(library,times(1)).checkoutMovie(movie);
+    }
 }

@@ -9,12 +9,14 @@ public class Library {
     private final List<Book> availableBooks;
     private final List<Book> issuedBooks;
     private final List<Movie> movies;
+    private final List<Movie> availableMovies;
 
     public Library(List<Book> books, List<Movie> movies) {
         this.books = books;
         availableBooks = new ArrayList<>(books);
         issuedBooks = new ArrayList<>();
         this.movies = movies;
+        availableMovies = new ArrayList<>(movies);
     }
 
     public List<Book> getAvailableBooks() {
@@ -43,6 +45,10 @@ public class Library {
     }
 
     public List<Movie> getAvailableMovies() {
-        return movies;
+        return availableMovies;
+    }
+
+    public void checkoutMovie(Movie movie) {
+        availableMovies.remove(movie);
     }
 }

@@ -49,4 +49,33 @@ class LibraryTest {
         assertTrue(library.getAvailableBooks().contains(bookTwo));
         assertFalse(library.getIssuedBooks().contains(bookTwo));
     }
+
+    @Test
+    public void shouldReturnListOfMovies() {
+        Movie movieOne = mock(Movie.class);
+        Movie movieTwo = mock(Movie.class);
+        Movie movieThree = mock(Movie.class);
+        Book book = mock(Book.class);
+        List<Movie> movies = List.of(movieOne, movieTwo, movieThree);
+        Library library = new Library(List.of(book), movies);
+
+        List<Movie> actualMovies = library.getAvailableMovies();
+
+        assertEquals(movies, actualMovies);
+    }
+
+    @Test
+    public void shouldCheckoutAMovieAfterSelection() {
+        Book bookOne = mock(Book.class);
+        Book bookTwo = mock(Book.class);
+        List<Book> books = List.of(bookOne, bookTwo);
+        Movie movieOne = mock(Movie.class);
+        Movie movieTwo = mock(Movie.class);
+        List<Movie> movies = List.of(movieOne, movieTwo);
+        Library library = new Library(books, movies);
+
+        library.checkoutMovie(movieOne);
+
+        assertFalse(library.getAvailableMovies().contains(movieOne));
+    }
 }

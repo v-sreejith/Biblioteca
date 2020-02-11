@@ -61,4 +61,8 @@ public class Biblioteca {
     public List<Movie> getLibraryMovies() {
         return library.getAvailableMovies();
     }
+
+    public void checkoutLibraryMovie(Movie movie) {
+        library.checkoutMovie(movie);
+    }
 }
