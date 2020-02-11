@@ -15,25 +15,4 @@ class BookTest {
 
         assertThat(bookOne, is(equalTo(bookTwo)));
     }
-
-    @Test
-    public void shouldReturnNameOfBook() {
-        Book bookOne = new Book("ABC", "meee", 2000);
-
-        assertThat(bookOne.getName(), is(equalTo("ABC")));
-    }
-
-    @Test
-    public void shouldReturnAuthorOfBook() {
-        Book bookOne = new Book("ABC", "meee", 2000);
-
-        assertThat(bookOne.getAuthor(), is(equalTo("meee")));
-    }
-
-    @Test
-    public void shouldReturnYearOfPublicationOfBook() {
-        Book bookOne = new Book("ABC", "meee", 2000);
-
-        assertThat(bookOne.getYear(), is(equalTo(2000)));
-    }
 }

@@ -3,7 +3,7 @@ import com.twu.biblioteca.*;
 import java.util.List;
 import java.util.Scanner;
 
-//Job: Represent a Bibliotica client
+//Job: Represent a Biblioteca client
 public class BibliotecaClient implements UserInterface {
     Biblioteca biblioteca;
     Library library;
@@ -44,7 +44,8 @@ public class BibliotecaClient implements UserInterface {
         System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
         System.out.println();
         for (Book book : books) {
-            System.out.format("%-20s\t%-30s\t%-20d", book.getName(), book.getAuthor(), book.getYear());
+            String[] details = book.formattedDetails().split(" ");
+            System.out.format("%-20s\t%-30s\t%-20s", details[0], details[1], details[2]);
             System.out.println();
         }
     }
@@ -111,7 +112,7 @@ public class BibliotecaClient implements UserInterface {
         System.out.println("\nSelect a Book to return");
         getOption();
         if (option > 0 && option <= issuedBooks.size()) {
-            Book book = issuedBooks.get(option-1);
+            Book book = issuedBooks.get(option - 1);
             biblioteca.returnLibraryBook(book);
         }
         System.out.println(biblioteca.getReturnMessage());

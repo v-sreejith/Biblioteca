@@ -63,7 +63,8 @@ class BibliotecaTest {
     @Test
     public void shouldReturnSuccessMessageOnCheckout() {
         Book book = mock(Book.class);
-        Library library = new Library(List.of(book), null);
+        Movie movie = mock(Movie.class);
+        Library library = new Library(List.of(book), List.of(movie));
         Biblioteca biblioteca = new Biblioteca(library);
 
         biblioteca.checkoutLibraryBook(1);
@@ -74,7 +75,8 @@ class BibliotecaTest {
     @Test
     public void shouldReturnFailureForWrongCheckout() {
         Book book = mock(Book.class);
-        Library library = new Library(List.of(book), null);
+        Movie movie = mock(Movie.class);
+        Library library = new Library(List.of(book), List.of(movie));
         Biblioteca biblioteca = new Biblioteca(library);
 
         biblioteca.checkoutLibraryBook(10);
@@ -97,7 +99,8 @@ class BibliotecaTest {
     public void shouldReturnFailureForWrongReturn() {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
-        Library library = new Library(List.of(bookOne), null);
+        Movie movie = mock(Movie.class);
+        Library library = new Library(List.of(bookOne, bookTwo), List.of(movie));
         Biblioteca biblioteca = new Biblioteca(library);
 
         biblioteca.returnLibraryBook(bookTwo);
@@ -123,6 +126,6 @@ class BibliotecaTest {
 
         biblioteca.checkoutLibraryMovie(movie);
 
-        verify(library,times(1)).checkoutMovie(movie);
+        verify(library, times(1)).checkoutMovie(movie);
     }
 }

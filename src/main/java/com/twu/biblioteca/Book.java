@@ -14,16 +14,8 @@ public class Book {
         this.year = year;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public int getYear() {
-        return year;
+    public String formattedDetails() {
+        return name + " " + author + " " + year;
     }
 
     @Override

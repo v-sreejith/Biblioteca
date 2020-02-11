@@ -15,7 +15,7 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
-        Library library = new Library(books, null);
+        Library library = new Library(books, List.of(mock(Movie.class)));
 
         List<Book> actualBooks = library.getAvailableBooks();
 
@@ -28,7 +28,7 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
-        Library library = new Library(books, null);
+        Library library = new Library(books, List.of(mock(Movie.class)));
 
         library.checkoutBook(1);
 
@@ -41,7 +41,7 @@ class LibraryTest {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
-        Library library = new Library(List.of(bookOne, bookTwo, bookThree), null);
+        Library library = new Library(List.of(bookOne, bookTwo, bookThree), List.of(mock(Movie.class)));
 
         library.checkoutBook(2);
         library.receiveBook(bookTwo);
