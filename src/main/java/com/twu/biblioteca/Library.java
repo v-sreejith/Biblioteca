@@ -43,6 +43,6 @@ public class Library {
     }
 
     public List<Movie> getAvailableMovies() {
-        return null;
+        return movies;
     }
 }

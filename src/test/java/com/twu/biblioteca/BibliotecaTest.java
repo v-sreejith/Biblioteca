@@ -112,6 +112,6 @@ class BibliotecaTest {
         Library library = new Library(List.of(bookOne), List.of(movie));
         Biblioteca biblioteca = new Biblioteca(library);
 
-        assertThat(biblioteca.getLibraryMovies(), is(equalTo(null)));
+        assertThat(biblioteca.getLibraryMovies(), is(equalTo(List.of(movie))));
     }
 }
