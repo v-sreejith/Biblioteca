@@ -8,11 +8,13 @@ public class Library {
     private final List<Book> books;
     private final List<Book> availableBooks;
     private final List<Book> issuedBooks;
+    private final List<Movie> movies;
 
-    public Library(List<Book> books) {
+    public Library(List<Book> books, List<Movie> movies) {
         this.books = books;
         availableBooks = new ArrayList<>(books);
         issuedBooks = new ArrayList<>();
+        this.movies = movies;
     }
 
     public List<Book> getAvailableBooks() {
@@ -38,5 +40,9 @@ public class Library {
             issuedBooks.remove(book);
             availableBooks.add(book);
         } else throw new Exception();
+    }
+
+    public List<Movie> getAvailableMovies() {
+        return null;
     }
 }

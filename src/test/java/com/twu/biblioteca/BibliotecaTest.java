@@ -63,7 +63,7 @@ class BibliotecaTest {
     @Test
     public void shouldReturnSuccessMessageOnCheckout() {
         Book book = mock(Book.class);
-        Library library = new Library(List.of(book));
+        Library library = new Library(List.of(book), null);
         Biblioteca biblioteca = new Biblioteca(library);
 
         biblioteca.checkoutLibraryBook(1);
@@ -74,7 +74,7 @@ class BibliotecaTest {
     @Test
     public void shouldReturnFailureForWrongCheckout() {
         Book book = mock(Book.class);
-        Library library = new Library(List.of(book));
+        Library library = new Library(List.of(book), null);
         Biblioteca biblioteca = new Biblioteca(library);
 
         biblioteca.checkoutLibraryBook(10);
@@ -97,7 +97,7 @@ class BibliotecaTest {
     public void shouldReturnFailureForWrongReturn() {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
-        Library library = new Library(List.of(bookOne));
+        Library library = new Library(List.of(bookOne), null);
         Biblioteca biblioteca = new Biblioteca(library);
 
         biblioteca.returnLibraryBook(bookTwo);
@@ -108,9 +108,10 @@ class BibliotecaTest {
     @Test
     public void shouldReturnAvailableMoviesFromLibrary() {
         Book bookOne = mock(Book.class);
-        Library library = new Library(List.of(bookOne));
+        Movie movie = mock(Movie.class);
+        Library library = new Library(List.of(bookOne), List.of(movie));
         Biblioteca biblioteca = new Biblioteca(library);
 
-        assertThat(biblioteca.getLibraryMovies(),is(equalTo(null)));
+        assertThat(biblioteca.getLibraryMovies(), is(equalTo(null)));
     }
 }

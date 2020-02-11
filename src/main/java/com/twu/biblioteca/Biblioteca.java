@@ -58,7 +58,7 @@ public class Biblioteca {
         }
     }
 
-    public String getLibraryMovies() {
-        return null;
+    public List<Movie> getLibraryMovies() {
+        return library.getAvailableMovies();
     }
 }

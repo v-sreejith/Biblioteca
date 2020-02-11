@@ -13,7 +13,7 @@ public class BibliotecaClient implements UserInterface {
     static boolean returnBack;
 
     private void init() {
-        library = new Library(initBooks());
+        library = new Library(initBooks(), null);
         biblioteca = new Biblioteca(library);
         scanner = new Scanner(System.in);
     }
