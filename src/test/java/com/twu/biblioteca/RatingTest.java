@@ -23,4 +23,11 @@ class RatingTest {
 
         assertThrows(InvalidRatingException.class, () -> new Rating(100));
     }
+
+    @Test
+    public void shouldReturnRatingAsUnratedIfRatingIs0() throws InvalidRatingException {
+        Rating rating = new Rating(0);
+
+        assertThat(rating.Rating(), is(equalTo("Unrated")));
+    }
 }

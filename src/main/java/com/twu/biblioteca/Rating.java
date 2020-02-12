@@ -15,8 +15,11 @@ public class Rating {
         }
     }
 
-    int Rating() {
-        return rating;
+    String Rating() {
+        if (rating > 0) {
+            return String.valueOf(rating);
+        }
+        return "Unrated";
     }
 
     @Override
