@@ -15,7 +15,7 @@ public class Rating {
         }
     }
 
-    String Rating() {
+    String rating() {
         if (rating > 0) {
             return String.valueOf(rating);
         }

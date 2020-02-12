@@ -28,6 +28,6 @@ class RatingTest {
     public void shouldReturnRatingAsUnratedIfRatingIs0() throws InvalidRatingException {
         Rating rating = new Rating(0);
 
-        assertThat(rating.Rating(), is(equalTo("Unrated")));
+        assertThat(rating.rating(), is(equalTo("Unrated")));
     }
 }
