@@ -6,9 +6,9 @@ public class Movie {
     public final String name;
     public final int year;
     public final String director;
-    public final int rating;
+    public final Rating rating;
 
-    public Movie(String name, int year, String director, int rating) {
+    public Movie(String name, int year, String director, Rating rating) {
         this.name = name;
         this.year = year;
         this.director = director;
