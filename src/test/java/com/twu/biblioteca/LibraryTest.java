@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -77,5 +78,19 @@ class LibraryTest {
         library.checkoutMovie(movieOne);
 
         assertFalse(library.getAvailableMovies().contains(movieOne));
+    }
+
+    @Test
+    public void shouldThrowExceptionForWrongBookCheckout() {
+        Book bookOne = mock(Book.class);
+        Book bookTwo = mock(Book.class);
+        Book bookThree = mock(Book.class);
+        List<Book> books = List.of(bookOne, bookTwo);
+        Movie movieOne = mock(Movie.class);
+        Movie movieTwo = mock(Movie.class);
+        List<Movie> movies = List.of(movieOne, movieTwo);
+        Library library = new Library(books, movies);
+
+        assertThrows(InvalidBookException.class,()->library.checkoutBook(bookThree));
     }
 }

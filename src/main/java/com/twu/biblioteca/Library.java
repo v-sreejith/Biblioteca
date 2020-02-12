@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.InvalidBookException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,18 +29,18 @@ public class Library {
         return issuedBooks;
     }
 
-    public void checkoutBook(Book book) throws Exception {
+    public void checkoutBook(Book book) throws InvalidBookException {
         if (availableBooks.contains(book)) {
             availableBooks.remove(book);
             issuedBooks.add(book);
-        } else throw new Exception();
+        } else throw new InvalidBookException();
     }
 
-    public void receiveBook(Book book) throws Exception {
+    public void receiveBook(Book book) throws InvalidBookException {
         if (books.contains(book) && !availableBooks.contains(book)) {
             issuedBooks.remove(book);
             availableBooks.add(book);
-        } else throw new Exception();
+        } else throw new InvalidBookException();
     }
 
     public List<Movie> getAvailableMovies() {

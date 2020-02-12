@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.InvalidBookException;
+
 import java.util.List;
 
 //Job: Manage library
@@ -36,7 +38,7 @@ public class Biblioteca {
         try {
             library.checkoutBook(book);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
-        } catch (Exception e) {
+        } catch (InvalidBookException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;
         }
     }
@@ -53,7 +55,7 @@ public class Biblioteca {
         try {
             library.receiveBook(book);
             returnMessage = BOOK_RETURN_SUCCESS;
-        } catch (Exception e) {
+        } catch (InvalidBookException e) {
             returnMessage = BOOK_RETURN_FAILURE;
         }
     }
