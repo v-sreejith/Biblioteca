@@ -7,10 +7,10 @@ public enum Option {
             executable.printListOfBooks();
         }
     },
-    QUIT_APP("Quit App") {
+    LIST_MOVIES("List All Movies") {
         @Override
         public void executeOption(UserInterface executable) {
-            executable.quit();
+            executable.printListOfMovies();
         }
     },
     CHECKOUT_BOOK("Checkout a Book") {
@@ -23,6 +23,12 @@ public enum Option {
         @Override
         public void executeOption(UserInterface executable) {
             executable.returnBook();
+        }
+    },
+    QUIT_APP("Quit App") {
+        @Override
+        public void executeOption(UserInterface executable) {
+            executable.quit();
         }
     };
     public String value;

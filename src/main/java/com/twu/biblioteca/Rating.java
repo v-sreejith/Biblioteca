@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Rating {
     private final int rating;
 
-    Rating(int rating) throws InvalidRatingException {
+    public Rating(int rating) throws InvalidRatingException {
         if (rating >= 0 && rating <= 10) {
             this.rating = rating;
         } else {
@@ -17,7 +17,7 @@ public class Rating {
 
     String rating() {
         if (rating > 0) {
-            return String.valueOf(rating);
+            return ""+rating;
         }
         return "Unrated";
     }

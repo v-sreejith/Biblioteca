@@ -13,4 +13,6 @@ public interface UserInterface {
     void showInvalid();
 
     void goBack();
+
+    void printListOfMovies();
 }

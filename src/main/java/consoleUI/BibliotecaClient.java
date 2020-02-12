@@ -15,7 +15,7 @@ public class BibliotecaClient implements UserInterface {
     static boolean returnBack;
 
     private void init() {
-        library = new Library(initBooks(), null);
+        library = new Library(initBooks(), initMovies());
         biblioteca = new Biblioteca(library);
         scanner = new Scanner(System.in);
     }
@@ -25,6 +25,24 @@ public class BibliotecaClient implements UserInterface {
         Book bookTwo = new Book("Kite Runner", "Khaled Hosseini", 2003);
         Book bookThree = new Book("Hunger Games", "Suzzane", 2009);
         return List.of(bookOne, bookTwo, bookThree);
+    }
+
+    private List<Movie> initMovies() {
+        Rating ratingOne;
+        Rating ratingTwo;
+        List<Movie> movies = null;
+        try {
+            ratingOne = new Rating(9);
+            ratingTwo = new Rating(10);
+
+            Movie movieOne = new Movie("Harry Potter", 2001, "J K Rowling", ratingOne);
+            Movie movieTwo = new Movie("Shawshank Redemption", 1999, "Frank Darabont", ratingOne);
+            Movie movieThree = new Movie("Joker", 2019, "Todd philips", ratingTwo);
+            Movie movieFour = new Movie("Ford V Ferrari", 2019, "James Mangold", ratingTwo);
+            movies = List.of(movieOne, movieTwo, movieThree, movieFour);
+        } catch (Exception ignored) {
+        }
+        return movies;
     }
 
     public BibliotecaClient() {
@@ -46,8 +64,18 @@ public class BibliotecaClient implements UserInterface {
         System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
         System.out.println();
         for (Book book : books) {
-            String[] details = book.formattedDetails().split(" ");
+            String[] details = book.formattedDetails().split(",");
             System.out.format("%-20s\t%-30s\t%-20s", details[0], details[1], details[2]);
+            System.out.println();
+        }
+    }
+
+    private void printMovies(List<Movie> movies) {
+        System.out.format("\n%-20s\t%-30s\t%-30s\t%-20s\n", "Name", "Year", "Director", "Rating");
+        System.out.println();
+        for (Movie movie : movies) {
+            String[] details = movie.formattedDetails().split(",");
+            System.out.format("%-20s\t%-30s\t%-30s\t%-20s", details[0], details[1], details[2], details[3]);
             System.out.println();
         }
     }
@@ -66,7 +94,7 @@ public class BibliotecaClient implements UserInterface {
         printBooks(biblioteca.getLibraryBooks());
         System.out.println("\nEnter book index for checkout");
         getOption();
-        Book book = biblioteca.getLibraryBooks().get(option);
+        Book book = biblioteca.getLibraryBooks().get(option-1);
         biblioteca.checkoutLibraryBook(book);
         System.out.println(biblioteca.getCheckoutMessage());
         while (!returnBack) {
@@ -90,6 +118,17 @@ public class BibliotecaClient implements UserInterface {
 
     public void goBack() {
         printMenu();
+    }
+
+    @Override
+    public void printListOfMovies() {
+        do {
+            System.out.println("Hii");
+            List<Movie> movies = biblioteca.getLibraryMovies();
+            printMovies(movies);
+            returnToMenu();
+        }
+        while (!returnBack);
     }
 
     private void returnToMenu() {
@@ -130,22 +169,9 @@ public class BibliotecaClient implements UserInterface {
 
     private void executeOption() {
         getOption();
-        switch (option) {
-            case 1:
-                Option.LIST_BOOKS.executeOption(this);
-                break;
-            case 2:
-                Option.QUIT_APP.executeOption(this);
-                break;
-            case 3:
-                Option.CHECKOUT_BOOK.executeOption(this);
-                break;
-            case 4:
-                Option.RETURN_BOOK.executeOption(this);
-                break;
-            default:
-                showInvalid();
-        }
+        if (option > 0 && option <= Option.values().length) {
+            Option.values()[option - 1].executeOption(this);
+        } else showInvalid();
     }
 
     public static void main(String[] args) {

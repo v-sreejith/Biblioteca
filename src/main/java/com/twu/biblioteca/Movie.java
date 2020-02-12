@@ -15,6 +15,10 @@ public class Movie {
         this.rating = rating;
     }
 
+    public String formattedDetails() {
+        return name+","+year+","+director+","+rating.rating();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -15,7 +15,7 @@ public class Book {
     }
 
     public String formattedDetails() {
-        return name + " " + author + " " + year;
+        return name + "," + author + "," + year;
     }
 
     @Override
