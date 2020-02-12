@@ -30,6 +30,12 @@ public enum Option {
         public void executeOption(UserInterface executable) {
             executable.quit();
         }
+    },
+    CHECKOUT_MOVIE("Checkout a Movie") {
+        @Override
+        public void executeOption(UserInterface executable) {
+            executable.movieCheckout();
+        }
     };
     public String value;
 

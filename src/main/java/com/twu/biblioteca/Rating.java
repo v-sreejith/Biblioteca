@@ -17,7 +17,7 @@ public class Rating {
 
     String rating() {
         if (rating > 0) {
-            return ""+rating;
+            return "" + rating;
         }
         return "Unrated";
     }

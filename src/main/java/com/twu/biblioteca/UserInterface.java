@@ -15,4 +15,6 @@ public interface UserInterface {
     void goBack();
 
     void printListOfMovies();
+
+    void movieCheckout();
 }
