@@ -64,7 +64,8 @@ public class BibliotecaClient implements UserInterface {
         printBooks(biblioteca.getLibraryBooks());
         System.out.println("\nEnter book index for checkout");
         getOption();
-        biblioteca.checkoutLibraryBook(option);
+        Book book = biblioteca.getLibraryBooks().get(option);
+        biblioteca.checkoutLibraryBook(book);
         System.out.println(biblioteca.getCheckoutMessage());
         while (!returnBack) {
             returnToMenu();

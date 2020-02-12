@@ -27,14 +27,11 @@ public class Library {
         return issuedBooks;
     }
 
-    public void checkoutBook(int option) throws Exception {
-        try {
-            Book book = getAvailableBooks().get(option - 1);
+    public void checkoutBook(Book book) throws Exception {
+        if (availableBooks.contains(book)) {
             availableBooks.remove(book);
             issuedBooks.add(book);
-        } catch (Exception e) {
-            throw new Exception(e);
-        }
+        } else throw new Exception();
     }
 
     public void receiveBook(Book book) throws Exception {

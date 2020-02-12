@@ -32,9 +32,9 @@ public class Biblioteca {
         return library.getIssuedBooks();
     }
 
-    public void checkoutLibraryBook(int option) {
+    public void checkoutLibraryBook(Book book) {
         try {
-            library.checkoutBook(option);
+            library.checkoutBook(book);
             checkoutMessage = SUCCESS_CHECKOUT;
         } catch (Exception e) {
             checkoutMessage = FAIL_CHECKOUT;

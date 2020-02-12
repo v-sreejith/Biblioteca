@@ -30,7 +30,7 @@ class LibraryTest {
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
         Library library = new Library(books, List.of(mock(Movie.class)));
 
-        library.checkoutBook(1);
+        library.checkoutBook(bookOne);
 
         assertFalse(library.getAvailableBooks().contains(bookOne));
         assertTrue(library.getIssuedBooks().contains(bookOne));
@@ -43,7 +43,7 @@ class LibraryTest {
         Book bookThree = mock(Book.class);
         Library library = new Library(List.of(bookOne, bookTwo, bookThree), List.of(mock(Movie.class)));
 
-        library.checkoutBook(2);
+        library.checkoutBook(bookTwo);
         library.receiveBook(bookTwo);
 
         assertTrue(library.getAvailableBooks().contains(bookTwo));

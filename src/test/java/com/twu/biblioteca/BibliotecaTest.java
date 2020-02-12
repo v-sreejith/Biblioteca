@@ -41,12 +41,13 @@ class BibliotecaTest {
 
     @Test
     public void shouldCheckoutABookFromLibrary() throws Exception {
+        Book book = mock(Book.class);
         Library library = mock(Library.class);
         Biblioteca biblioteca = new Biblioteca(library);
 
-        biblioteca.checkoutLibraryBook(1);
+        biblioteca.checkoutLibraryBook(book);
 
-        verify(library, times(1)).checkoutBook(1);
+        verify(library, times(1)).checkoutBook(book);
     }
 
     @Test
@@ -67,7 +68,7 @@ class BibliotecaTest {
         Library library = new Library(List.of(book), List.of(movie));
         Biblioteca biblioteca = new Biblioteca(library);
 
-        biblioteca.checkoutLibraryBook(1);
+        biblioteca.checkoutLibraryBook(book);
 
         assertThat(biblioteca.getCheckoutMessage(), is(equalTo("Thank you! Enjoy the book")));
     }
@@ -75,11 +76,12 @@ class BibliotecaTest {
     @Test
     public void shouldReturnFailureForWrongCheckout() {
         Book book = mock(Book.class);
+        Book anotherBook = mock(Book.class);
         Movie movie = mock(Movie.class);
         Library library = new Library(List.of(book), List.of(movie));
         Biblioteca biblioteca = new Biblioteca(library);
 
-        biblioteca.checkoutLibraryBook(10);
+        biblioteca.checkoutLibraryBook(anotherBook);
 
         assertThat(biblioteca.getCheckoutMessage(), is(equalTo("Sorry, that book is not available")));
     }
