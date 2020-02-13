@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
-class LibraryTest {
+class InventoryTest {
 
     @Test
     public void shouldReturnListOfBooks() {
@@ -16,9 +16,9 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
-        Library<Book> library = new Library<>(books);
+        Inventory<Book> inventory = new Inventory<>(books);
 
-        List<Book> actualBooks = library.getAvailableItems();
+        List<Book> actualBooks = inventory.getAvailableItems();
 
         assertEquals(books, actualBooks);
     }
@@ -29,12 +29,12 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
-        Library<Book> library = new Library<>(books);
+        Inventory<Book> inventory = new Inventory<>(books);
 
-        library.checkoutItems(bookOne);
+        inventory.checkoutItems(bookOne);
 
-        assertFalse(library.getAvailableItems().contains(bookOne));
-        assertTrue(library.getIssuedItems().contains(bookOne));
+        assertFalse(inventory.getAvailableItems().contains(bookOne));
+        assertTrue(inventory.getIssuedItems().contains(bookOne));
     }
 
     @Test
@@ -42,13 +42,13 @@ class LibraryTest {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
-        Library<Book> library = new Library<Book>(List.of(bookOne, bookTwo, bookThree));
+        Inventory<Book> inventory = new Inventory<Book>(List.of(bookOne, bookTwo, bookThree));
 
-        library.checkoutItems(bookTwo);
-        library.receiveItem(bookTwo);
+        inventory.checkoutItems(bookTwo);
+        inventory.receiveItem(bookTwo);
 
-        assertTrue(library.getAvailableItems().contains(bookTwo));
-        assertFalse(library.getIssuedItems().contains(bookTwo));
+        assertTrue(inventory.getAvailableItems().contains(bookTwo));
+        assertFalse(inventory.getIssuedItems().contains(bookTwo));
     }
 
     @Test
@@ -57,9 +57,9 @@ class LibraryTest {
         Movie movieTwo = mock(Movie.class);
         Movie movieThree = mock(Movie.class);
         List<Movie> movies = List.of(movieOne, movieTwo, movieThree);
-        Library<Movie> library = new Library<>(movies);
+        Inventory<Movie> inventory = new Inventory<>(movies);
 
-        List<Movie> actualMovies = library.getAvailableItems();
+        List<Movie> actualMovies = inventory.getAvailableItems();
 
         assertEquals(movies, actualMovies);
     }
@@ -72,11 +72,11 @@ class LibraryTest {
         Movie movieOne = mock(Movie.class);
         Movie movieTwo = mock(Movie.class);
         List<Movie> movies = List.of(movieOne, movieTwo);
-        Library<Movie> library = new Library<>(movies);
+        Inventory<Movie> inventory = new Inventory<>(movies);
 
-        library.checkoutItems(movieOne);
+        inventory.checkoutItems(movieOne);
 
-        assertFalse(library.getAvailableItems().contains(movieOne));
+        assertFalse(inventory.getAvailableItems().contains(movieOne));
     }
 
     @Test
@@ -85,9 +85,9 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo);
-        Library<Book> library = new Library<>(books);
+        Inventory<Book> inventory = new Inventory<>(books);
 
-        assertThrows(InvalidItemException.class,()->library.checkoutItems(bookThree));
+        assertThrows(InvalidItemException.class,()-> inventory.checkoutItems(bookThree));
     }
 
     @Test
@@ -98,12 +98,12 @@ class LibraryTest {
         Movie movieOne = mock(Movie.class);
         Movie movieTwo = mock(Movie.class);
         List<Movie> movies = List.of(movieOne, movieTwo);
-        Library<Movie> library = new Library<>(movies);
+        Inventory<Movie> inventory = new Inventory<>(movies);
 
-        library.checkoutItems(movieOne);
-        library.receiveItem(movieOne);
+        inventory.checkoutItems(movieOne);
+        inventory.receiveItem(movieOne);
 
-        assertTrue(library.getAvailableItems().contains(movieOne));
-        assertFalse(library.getIssuedItems().contains(movieOne));
+        assertTrue(inventory.getAvailableItems().contains(movieOne));
+        assertFalse(inventory.getIssuedItems().contains(movieOne));
     }
 }

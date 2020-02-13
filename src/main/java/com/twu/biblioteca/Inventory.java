@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Job: Represent a Library
-public class Library<T extends LibraryItem> {
+public class Inventory<T extends LibraryItem> {
     private final List<T> items;
     private final List<T> availableItems;
     private final List<T> issuedItems;
 
-    public Library(List<T> items) {
+    public Inventory(List<T> items) {
         this.items = items;
         availableItems = new ArrayList<>(items);
         this.issuedItems = new ArrayList<>();

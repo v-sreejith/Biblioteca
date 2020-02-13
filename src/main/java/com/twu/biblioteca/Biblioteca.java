@@ -12,16 +12,16 @@ public class Biblioteca {
     public static final String BOOK_RETURN_SUCCESS = "Thank you for returning the book";
     public static final String BOOK_RETURN_FAILURE = "That is not a valid book to return.";
 
-    Library<Book> bookLibrary;
-    Library<Movie> movieLibrary;
+    Inventory<Book> bookInventory;
+    Inventory<Movie> movieInventory;
     private UserCredential userCredential;
     private String checkoutMessage;
     private String returnMessage;
 
-    public Biblioteca(Library<Book> bookLibrary, UserCredential userCredential, Library<Movie> movieLibrary) {
-        this.bookLibrary = bookLibrary;
+    public Biblioteca(Inventory<Book> bookInventory, UserCredential userCredential, Inventory<Movie> movieInventory) {
+        this.bookInventory = bookInventory;
         this.userCredential = userCredential;
-        this.movieLibrary = movieLibrary;
+        this.movieInventory = movieInventory;
         returnMessage = BOOK_RETURN_FAILURE;
         checkoutMessage = BOOK_CHECKOUT_FAILURE;
     }
@@ -31,16 +31,16 @@ public class Biblioteca {
     }
 
     public List<Book> getLibraryBooks() {
-        return bookLibrary.getAvailableItems();
+        return bookInventory.getAvailableItems();
     }
 
     public List<Book> getIssuedBooks() {
-        return bookLibrary.getIssuedItems();
+        return bookInventory.getIssuedItems();
     }
 
     public void checkoutLibraryBook(Book book) {
         try {
-            bookLibrary.checkoutItems(book);
+            bookInventory.checkoutItems(book);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
         } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;
@@ -57,7 +57,7 @@ public class Biblioteca {
 
     public void returnLibraryBook(Book book) {
         try {
-            bookLibrary.receiveItem(book);
+            bookInventory.receiveItem(book);
             returnMessage = BOOK_RETURN_SUCCESS;
         } catch (InvalidItemException e) {
             returnMessage = BOOK_RETURN_FAILURE;
@@ -65,12 +65,12 @@ public class Biblioteca {
     }
 
     public List<Movie> getLibraryMovies() {
-        return movieLibrary.getAvailableItems();
+        return movieInventory.getAvailableItems();
     }
 
     public void checkoutLibraryMovie(Movie movie) {
         try {
-            movieLibrary.checkoutItems(movie);
+            movieInventory.checkoutItems(movie);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
         } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;

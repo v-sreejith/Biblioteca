@@ -15,59 +15,59 @@ class BibliotecaTest {
 
     @Test
     public void shouldReturnWelcomeMessage() {
-        Library<Book> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         assertThat(biblioteca.getWelcomeMessage(), is(equalTo(("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"))));
     }
 
     @Test
     public void shouldReturnListOfBooksInLibrary() {
-        Library<Book> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         biblioteca.getLibraryBooks();
 
-        verify(library, times(1)).getAvailableItems();
+        verify(inventory, times(1)).getAvailableItems();
     }
 
     @Test
     public void shouldReturnListOfIssuedBooksFromLibrary() {
-        Library<Book> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         biblioteca.getIssuedBooks();
 
-        verify(library, times(1)).getIssuedItems();
+        verify(inventory, times(1)).getIssuedItems();
     }
 
     @Test
     public void shouldCheckoutABookFromLibrary() throws Exception {
         Book book = mock(Book.class);
-        Library<Book> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         biblioteca.checkoutLibraryBook(book);
 
-        verify(library, times(1)).checkoutItems(book);
+        verify(inventory, times(1)).checkoutItems(book);
     }
 
     @Test
     public void shouldReturnABookBackToLibrary() throws Exception {
         Book book = mock(Book.class);
-        Library<Book> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         biblioteca.returnLibraryBook(book);
 
-        verify(library, times(1)).receiveItem(book);
+        verify(inventory, times(1)).receiveItem(book);
     }
 
     @Test
     public void shouldReturnSuccessMessageOnCheckout() {
         Book book = mock(Book.class);
-        Library<Book> library = new Library<>(List.of(book));
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = new Inventory<>(List.of(book));
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         biblioteca.checkoutLibraryBook(book);
 
@@ -78,8 +78,8 @@ class BibliotecaTest {
     public void shouldReturnFailureForWrongCheckout() {
         Book book = mock(Book.class);
         Book anotherBook = mock(Book.class);
-        Library<Book> library = new Library<>(List.of(book));
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = new Inventory<>(List.of(book));
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         biblioteca.checkoutLibraryBook(anotherBook);
 
@@ -89,8 +89,8 @@ class BibliotecaTest {
     @Test
     public void shouldReturnSuccessMessageOnReturn() {
         Book book = mock(Book.class);
-        Library<Book> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(library, null, null);
+        Inventory<Book> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
 
         biblioteca.returnLibraryBook(book);
 
@@ -101,9 +101,9 @@ class BibliotecaTest {
     public void shouldReturnFailureForWrongReturn() {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
-        Library<Book> bookLibrary = new Library<>(List.of(bookOne, bookTwo));
-        Library<Movie> movieLibrary = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(bookLibrary, null, movieLibrary);
+        Inventory<Book> bookInventory = new Inventory<>(List.of(bookOne, bookTwo));
+        Inventory<Movie> movieInventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(bookInventory, null, movieInventory);
 
         biblioteca.returnLibraryBook(bookTwo);
 
@@ -112,32 +112,32 @@ class BibliotecaTest {
 
     @Test
     public void shouldReturnAvailableMoviesFromLibrary() {
-        Library<Movie> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(null, null, library);
+        Inventory<Movie> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(null, null, inventory);
 
         biblioteca.getLibraryMovies();
 
-        verify(library, times(1)).getAvailableItems();
+        verify(inventory, times(1)).getAvailableItems();
     }
 
     @Test
     public void shouldCheckoutAMovieFromLibrary() throws InvalidItemException {
         Movie movie = mock(Movie.class);
-        Library<Movie> library = mock(Library.class);
-        Biblioteca biblioteca = new Biblioteca(null, null, library);
+        Inventory<Movie> inventory = mock(Inventory.class);
+        Biblioteca biblioteca = new Biblioteca(null, null, inventory);
 
         biblioteca.checkoutLibraryMovie(movie);
 
-        verify(library, times(1)).checkoutItems(movie);
+        verify(inventory, times(1)).checkoutItems(movie);
     }
 
     @Test
     public void shouldValidateUserCredentials() {
-        Library library = mock(Library.class);
+        Inventory inventory = mock(Inventory.class);
         int libraryNumber = 12345;
         String password = "Hello";
         UserCredential credential = new UserCredential(libraryNumber, password);
-        Biblioteca biblioteca = new Biblioteca(library, credential, null);
+        Biblioteca biblioteca = new Biblioteca(inventory, credential, null);
 
         assertTrue(biblioteca.validateUser(libraryNumber, password));
     }
