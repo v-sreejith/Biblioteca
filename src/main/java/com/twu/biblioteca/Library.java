@@ -27,6 +27,10 @@ public class Library {
         return availableBooks;
     }
 
+    public List<Movie> getAvailableMovies() {
+        return availableMovies;
+    }
+
     public List<Book> getIssuedBooks() {
         return issuedBooks;
     }
@@ -42,22 +46,18 @@ public class Library {
         } else throw new InvalidBookException();
     }
 
-    public void receiveBook(Book book) throws InvalidBookException {
-        if (books.contains(book) && !availableBooks.contains(book)) {
-            issuedBooks.remove(book);
-            availableBooks.add(book);
-        } else throw new InvalidBookException();
-    }
-
-    public List<Movie> getAvailableMovies() {
-        return availableMovies;
-    }
-
     public void checkoutMovie(Movie movie) {
         if (availableMovies.contains(movie)) {
             availableMovies.remove(movie);
             issuedMovies.add(movie);
         }
+    }
+
+    public void receiveBook(Book book) throws InvalidBookException {
+        if (books.contains(book) && !availableBooks.contains(book)) {
+            issuedBooks.remove(book);
+            availableBooks.add(book);
+        } else throw new InvalidBookException();
     }
 
     public void receiveMovie(Movie movie) {
