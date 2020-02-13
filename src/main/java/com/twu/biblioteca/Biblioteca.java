@@ -12,8 +12,8 @@ public class Biblioteca {
     public static final String BOOK_RETURN_SUCCESS = "Thank you for returning the book";
     public static final String BOOK_RETURN_FAILURE = "That is not a valid book to return.";
 
-    Inventory<Book> bookInventory;
-    Inventory<Movie> movieInventory;
+    private final Inventory<Book> bookInventory;
+    private final Inventory<Movie> movieInventory;
     private UserCredential userCredential;
     private String checkoutMessage;
     private String returnMessage;
@@ -40,7 +40,7 @@ public class Biblioteca {
 
     public void checkoutLibraryBook(Book book) {
         try {
-            bookInventory.checkoutItems(book);
+            bookInventory.checkout(book);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
         } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;
@@ -57,7 +57,7 @@ public class Biblioteca {
 
     public void returnLibraryBook(Book book) {
         try {
-            bookInventory.receiveItem(book);
+            bookInventory.receive(book);
             returnMessage = BOOK_RETURN_SUCCESS;
         } catch (InvalidItemException e) {
             returnMessage = BOOK_RETURN_FAILURE;
@@ -70,7 +70,7 @@ public class Biblioteca {
 
     public void checkoutLibraryMovie(Movie movie) {
         try {
-            movieInventory.checkoutItems(movie);
+            movieInventory.checkout(movie);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
         } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;

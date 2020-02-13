@@ -5,7 +5,7 @@ import com.twu.biblioteca.exceptions.InvalidItemException;
 import java.util.ArrayList;
 import java.util.List;
 
-//Job: Represent a Library
+//Job: Represent a Inventory
 public class Inventory<T extends LibraryItem> {
     private final List<T> items;
     private final List<T> availableItems;
@@ -25,17 +25,19 @@ public class Inventory<T extends LibraryItem> {
         return issuedItems;
     }
 
-    public void checkoutItems(T item) throws InvalidItemException {
-        if (availableItems.contains(item)) {
-            availableItems.remove(item);
-            issuedItems.add(item);
-        } else throw new InvalidItemException();
+    public void checkout(T item) throws InvalidItemException {
+        if (!availableItems.contains(item)) {
+            throw new InvalidItemException();
+        }
+        availableItems.remove(item);
+        issuedItems.add(item);
     }
 
-    public void receiveItem(T item) throws InvalidItemException {
-        if (items.contains(item) && !availableItems.contains(item)) {
-            issuedItems.remove(item);
-            availableItems.add(item);
-        } else throw new InvalidItemException();
+    public void receive(T item) throws InvalidItemException {
+        if (!items.contains(item) && availableItems.contains(item)) {
+            throw new InvalidItemException();
+        }
+        issuedItems.remove(item);
+        availableItems.add(item);
     }
 }

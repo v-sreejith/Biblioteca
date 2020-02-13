@@ -31,7 +31,7 @@ class InventoryTest {
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
         Inventory<Book> inventory = new Inventory<>(books);
 
-        inventory.checkoutItems(bookOne);
+        inventory.checkout(bookOne);
 
         assertFalse(inventory.getAvailableItems().contains(bookOne));
         assertTrue(inventory.getIssuedItems().contains(bookOne));
@@ -44,8 +44,8 @@ class InventoryTest {
         Book bookThree = mock(Book.class);
         Inventory<Book> inventory = new Inventory<>(List.of(bookOne, bookTwo, bookThree));
 
-        inventory.checkoutItems(bookTwo);
-        inventory.receiveItem(bookTwo);
+        inventory.checkout(bookTwo);
+        inventory.receive(bookTwo);
 
         assertTrue(inventory.getAvailableItems().contains(bookTwo));
         assertFalse(inventory.getIssuedItems().contains(bookTwo));
@@ -71,7 +71,7 @@ class InventoryTest {
         List<Movie> movies = List.of(movieOne, movieTwo);
         Inventory<Movie> inventory = new Inventory<>(movies);
 
-        inventory.checkoutItems(movieOne);
+        inventory.checkout(movieOne);
 
         assertFalse(inventory.getAvailableItems().contains(movieOne));
     }
@@ -84,7 +84,7 @@ class InventoryTest {
         List<Book> books = List.of(bookOne, bookTwo);
         Inventory<Book> inventory = new Inventory<>(books);
 
-        assertThrows(InvalidItemException.class,()-> inventory.checkoutItems(bookThree));
+        assertThrows(InvalidItemException.class,()-> inventory.checkout(bookThree));
     }
 
     @Test
@@ -94,8 +94,8 @@ class InventoryTest {
         List<Movie> movies = List.of(movieOne, movieTwo);
         Inventory<Movie> inventory = new Inventory<>(movies);
 
-        inventory.checkoutItems(movieOne);
-        inventory.receiveItem(movieOne);
+        inventory.checkout(movieOne);
+        inventory.receive(movieOne);
 
         assertTrue(inventory.getAvailableItems().contains(movieOne));
         assertFalse(inventory.getIssuedItems().contains(movieOne));

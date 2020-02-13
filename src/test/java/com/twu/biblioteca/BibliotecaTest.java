@@ -49,7 +49,7 @@ class BibliotecaTest {
 
         biblioteca.checkoutLibraryBook(book);
 
-        verify(inventory, times(1)).checkoutItems(book);
+        verify(inventory, times(1)).checkout(book);
     }
 
     @Test
@@ -60,7 +60,7 @@ class BibliotecaTest {
 
         biblioteca.returnLibraryBook(book);
 
-        verify(inventory, times(1)).receiveItem(book);
+        verify(inventory, times(1)).receive(book);
     }
 
     @Test
@@ -128,12 +128,12 @@ class BibliotecaTest {
 
         biblioteca.checkoutLibraryMovie(movie);
 
-        verify(inventory, times(1)).checkoutItems(movie);
+        verify(inventory, times(1)).checkout(movie);
     }
 
     @Test
     public void shouldValidateUserCredentials() {
-        Inventory inventory = mock(Inventory.class);
+        Inventory<Book> inventory = mock(Inventory.class);
         int libraryNumber = 12345;
         String password = "Hello";
         UserCredential credential = new UserCredential(libraryNumber, password);
