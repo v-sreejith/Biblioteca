@@ -10,8 +10,8 @@ class UserCredentialTest {
 
     @Test
     public void shouldEquateTwoSimilarCredentials() {
-        UserCredential userCredentialOne = new UserCredential();
-        UserCredential userCredentialTwo = new UserCredential();
+        UserCredential userCredentialOne = new UserCredential(123, "hii");
+        UserCredential userCredentialTwo = new UserCredential(123, "hii");
 
         assertThat(userCredentialTwo, is(equalTo(userCredentialOne)));
     }

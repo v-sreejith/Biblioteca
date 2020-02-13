@@ -3,8 +3,13 @@ package com.twu.biblioteca;
 import java.util.Objects;
 
 public class UserCredential {
-    int libraryNumber;
-    String password;
+    private final int libraryNumber;
+    private final String password;
+
+    public UserCredential(int libraryNumber, String password) {
+        this.libraryNumber = libraryNumber;
+        this.password = password;
+    }
 
     @Override
     public boolean equals(Object o) {

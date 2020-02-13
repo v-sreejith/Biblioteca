@@ -20,7 +20,7 @@ public class BibliotecaClient implements UserInterface {
 
     private void init() {
         library = new Library(initBooks(), initMovies());
-        biblioteca = new Biblioteca(library);
+        biblioteca = new Biblioteca(library, null);
         scanner = new Scanner(System.in);
     }
 
