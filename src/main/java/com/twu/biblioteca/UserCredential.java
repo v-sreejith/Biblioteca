@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.Objects;
 
 public class UserCredential {
-    int libraryNumber;
+    LibraryNumber libraryNumber;
     String password;
 
     @Override
