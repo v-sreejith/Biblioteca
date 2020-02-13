@@ -132,12 +132,15 @@ public class BibliotecaClient implements UserInterface {
 
     @Override
     public void movieCheckout() {
-        printMovies(biblioteca.getLibraryMovies());
+        List<Movie> movies=biblioteca.getLibraryMovies();
+        printMovies(movies);
         System.out.println("\nEnter movie index for checkout");
         getOption();
-        Movie movie = biblioteca.getLibraryMovies().get(option-1);
-        biblioteca.checkoutLibraryMovie(movie);
-        System.out.println(biblioteca.getCheckoutMessage());
+        if (option>0 && option<movies.size()){
+            Movie movie = movies.get(option-1);
+            biblioteca.checkoutLibraryMovie(movie);
+            System.out.println(biblioteca.getCheckoutMessage());
+        } else showInvalid();
         while (!returnBack) {
             returnToMenu();
         }

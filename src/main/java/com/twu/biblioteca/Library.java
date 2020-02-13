@@ -12,10 +12,12 @@ public class Library {
     private final List<Book> issuedBooks;
     private final List<Movie> movies;
     private final List<Movie> availableMovies;
+    private final List<Movie> issuedMovies;
 
     public Library(List<Book> books, List<Movie> movies) {
         this.books = books;
         availableBooks = new ArrayList<>(books);
+        this.issuedMovies = new ArrayList<>();
         issuedBooks = new ArrayList<>();
         this.movies = movies;
         availableMovies = new ArrayList<>(movies);
@@ -48,6 +50,9 @@ public class Library {
     }
 
     public void checkoutMovie(Movie movie) {
-        availableMovies.remove(movie);
+        if (availableMovies.contains(movie)) {
+            availableMovies.remove(movie);
+            issuedMovies.add(movie);
+        }
     }
 }
