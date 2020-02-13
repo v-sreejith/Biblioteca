@@ -17,4 +17,6 @@ public interface UserInterface {
     void printListOfMovies();
 
     void movieCheckout();
+
+    void returnMovie();
 }

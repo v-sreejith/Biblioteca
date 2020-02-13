@@ -215,6 +215,21 @@ public class BibliotecaClient implements UserInterface {
         }
     }
 
+    public void returnMovie() {
+        List<Movie> issuedMovies = biblioteca.getIssuedMovies();
+        printMovies(issuedMovies);
+        System.out.println("\nSelect a Movie to return");
+        getOption();
+        if (option > 0 && option <= issuedMovies.size()) {
+            Movie movie = issuedMovies.get(option - 1);
+            biblioteca.returnLibraryMovie(movie);
+        }
+        System.out.println(biblioteca.getReturnMessage());
+        while (!returnBack) {
+            returnToMenu();
+        }
+    }
+
     public void quit() {
         exit = true;
     }

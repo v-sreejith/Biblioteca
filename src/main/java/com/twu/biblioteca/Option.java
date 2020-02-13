@@ -36,6 +36,12 @@ public enum Option {
         public void executeOption(UserInterface executable) {
             executable.movieCheckout();
         }
+    },
+    RETURN_MOVIE("Return a Movie") {
+        @Override
+        public void executeOption(UserInterface executable) {
+            executable.returnMovie();
+        }
     };
     public String value;
 

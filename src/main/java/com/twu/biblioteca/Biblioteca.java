@@ -11,6 +11,10 @@ public class Biblioteca {
     public static final String BOOK_CHECKOUT_FAILURE = "Sorry, that book is not available";
     public static final String BOOK_RETURN_SUCCESS = "Thank you for returning the book";
     public static final String BOOK_RETURN_FAILURE = "That is not a valid book to return.";
+    public static final String MOVIE_CHECKOUT_SUCCESS = "Thank you! Enjoy the movie";
+    public static final String MOVIE_CHECKOUT_FAILURE = "Sorry, that movie is not available";
+    public static final String MOVIE_RETURN_SUCCESS = "Thank you for returning the movie";
+    public static final String MOVIE_RETURN_FAILURE = "That is not a valid movie to return.";
 
     private final Inventory<Book> bookInventory;
     private final Inventory<Movie> movieInventory;
@@ -37,6 +41,11 @@ public class Biblioteca {
     public List<Book> getIssuedBooks() {
         return bookInventory.getIssuedItems();
     }
+
+    public List<Movie> getIssuedMovies() {
+        return movieInventory.getIssuedItems();
+    }
+
 
     public void checkoutLibraryBook(Book book) {
         try {
@@ -71,9 +80,18 @@ public class Biblioteca {
     public void checkoutLibraryMovie(Movie movie) {
         try {
             movieInventory.checkout(movie);
-            checkoutMessage = BOOK_CHECKOUT_SUCCESS;
+            checkoutMessage = MOVIE_CHECKOUT_SUCCESS;
         } catch (InvalidItemException e) {
-            checkoutMessage = BOOK_CHECKOUT_FAILURE;
+            checkoutMessage = MOVIE_CHECKOUT_FAILURE;
+        }
+    }
+
+    public void returnLibraryMovie(Movie movie) {
+        try {
+            movieInventory.receive(movie);
+            returnMessage = MOVIE_RETURN_SUCCESS;
+        } catch (InvalidItemException e) {
+            returnMessage = MOVIE_RETURN_FAILURE;
         }
     }
 
