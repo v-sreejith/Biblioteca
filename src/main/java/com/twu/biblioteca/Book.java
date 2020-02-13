@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.Objects;
 
 //Job: Represent a book
-public class Book {
+public class Book extends LibraryItem{
     private final String name;
     private final String author;
     private final int year;

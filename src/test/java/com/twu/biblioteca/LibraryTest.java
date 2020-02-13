@@ -16,9 +16,9 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
-        Library library = new Library(books, List.of(mock(Movie.class)));
+        Library<Book> library = new Library<>(books);
 
-        List<Book> actualBooks = library.getAvailableBooks();
+        List<Book> actualBooks = library.getAvailableItems();
 
         assertEquals(books, actualBooks);
     }
@@ -29,12 +29,12 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo, bookThree);
-        Library library = new Library(books, List.of(mock(Movie.class)));
+        Library<Book> library = new Library<>(books);
 
-        library.checkoutBook(bookOne);
+        library.checkoutItems(bookOne);
 
-        assertFalse(library.getAvailableBooks().contains(bookOne));
-        assertTrue(library.getIssuedBooks().contains(bookOne));
+        assertFalse(library.getAvailableItems().contains(bookOne));
+        assertTrue(library.getIssuedItems().contains(bookOne));
     }
 
     @Test
@@ -42,13 +42,13 @@ class LibraryTest {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
-        Library library = new Library(List.of(bookOne, bookTwo, bookThree), List.of(mock(Movie.class)));
+        Library<Book> library = new Library<Book>(List.of(bookOne, bookTwo, bookThree));
 
-        library.checkoutBook(bookTwo);
-        library.receiveBook(bookTwo);
+        library.checkoutItems(bookTwo);
+        library.receiveItem(bookTwo);
 
-        assertTrue(library.getAvailableBooks().contains(bookTwo));
-        assertFalse(library.getIssuedBooks().contains(bookTwo));
+        assertTrue(library.getAvailableItems().contains(bookTwo));
+        assertFalse(library.getIssuedItems().contains(bookTwo));
     }
 
     @Test
@@ -56,28 +56,27 @@ class LibraryTest {
         Movie movieOne = mock(Movie.class);
         Movie movieTwo = mock(Movie.class);
         Movie movieThree = mock(Movie.class);
-        Book book = mock(Book.class);
         List<Movie> movies = List.of(movieOne, movieTwo, movieThree);
-        Library library = new Library(List.of(book), movies);
+        Library<Movie> library = new Library<>(movies);
 
-        List<Movie> actualMovies = library.getAvailableMovies();
+        List<Movie> actualMovies = library.getAvailableItems();
 
         assertEquals(movies, actualMovies);
     }
 
     @Test
-    public void shouldCheckoutAMovieAfterSelection() {
+    public void shouldCheckoutAMovieAfterSelection() throws InvalidItemException {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo);
         Movie movieOne = mock(Movie.class);
         Movie movieTwo = mock(Movie.class);
         List<Movie> movies = List.of(movieOne, movieTwo);
-        Library library = new Library(books, movies);
+        Library<Movie> library = new Library<>(movies);
 
-        library.checkoutMovie(movieOne);
+        library.checkoutItems(movieOne);
 
-        assertFalse(library.getAvailableMovies().contains(movieOne));
+        assertFalse(library.getAvailableItems().contains(movieOne));
     }
 
     @Test
@@ -86,28 +85,25 @@ class LibraryTest {
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo);
-        Movie movieOne = mock(Movie.class);
-        Movie movieTwo = mock(Movie.class);
-        List<Movie> movies = List.of(movieOne, movieTwo);
-        Library library = new Library(books, movies);
+        Library<Book> library = new Library<>(books);
 
-        assertThrows(InvalidBookException.class,()->library.checkoutBook(bookThree));
+        assertThrows(InvalidItemException.class,()->library.checkoutItems(bookThree));
     }
 
     @Test
-    public void shouldReceiveMovieIssued() {
+    public void shouldReceiveMovieIssued() throws InvalidItemException {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         List<Book> books = List.of(bookOne, bookTwo);
         Movie movieOne = mock(Movie.class);
         Movie movieTwo = mock(Movie.class);
         List<Movie> movies = List.of(movieOne, movieTwo);
-        Library library = new Library(books, movies);
+        Library<Movie> library = new Library<>(movies);
 
-        library.checkoutMovie(movieOne);
-        library.receiveMovie(movieOne);
+        library.checkoutItems(movieOne);
+        library.receiveItem(movieOne);
 
-        assertTrue(library.getAvailableMovies().contains(movieOne));
-        assertFalse(library.getIssuedMovies().contains(movieOne));
+        assertTrue(library.getAvailableItems().contains(movieOne));
+        assertFalse(library.getIssuedItems().contains(movieOne));
     }
 }

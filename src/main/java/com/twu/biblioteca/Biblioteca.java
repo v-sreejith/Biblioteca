@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.exceptions.InvalidBookException;
+import com.twu.biblioteca.exceptions.InvalidItemException;
 
 import java.util.List;
 
@@ -12,14 +12,16 @@ public class Biblioteca {
     public static final String BOOK_RETURN_SUCCESS = "Thank you for returning the book";
     public static final String BOOK_RETURN_FAILURE = "That is not a valid book to return.";
 
-    Library library;
+    Library<Book> bookLibrary;
+    Library<Movie> movieLibrary;
     private UserCredential userCredential;
     private String checkoutMessage;
     private String returnMessage;
 
-    public Biblioteca(Library library, UserCredential userCredential) {
-        this.library = library;
+    public Biblioteca(Library<Book> bookLibrary, UserCredential userCredential, Library<Movie> movieLibrary) {
+        this.bookLibrary = bookLibrary;
         this.userCredential = userCredential;
+        this.movieLibrary = movieLibrary;
         returnMessage = BOOK_RETURN_FAILURE;
         checkoutMessage = BOOK_CHECKOUT_FAILURE;
     }
@@ -29,18 +31,18 @@ public class Biblioteca {
     }
 
     public List<Book> getLibraryBooks() {
-        return library.getAvailableBooks();
+        return bookLibrary.getAvailableItems();
     }
 
     public List<Book> getIssuedBooks() {
-        return library.getIssuedBooks();
+        return bookLibrary.getIssuedItems();
     }
 
     public void checkoutLibraryBook(Book book) {
         try {
-            library.checkoutBook(book);
+            bookLibrary.checkoutItems(book);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
-        } catch (InvalidBookException e) {
+        } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;
         }
     }
@@ -55,19 +57,24 @@ public class Biblioteca {
 
     public void returnLibraryBook(Book book) {
         try {
-            library.receiveBook(book);
+            bookLibrary.receiveItem(book);
             returnMessage = BOOK_RETURN_SUCCESS;
-        } catch (InvalidBookException e) {
+        } catch (InvalidItemException e) {
             returnMessage = BOOK_RETURN_FAILURE;
         }
     }
 
     public List<Movie> getLibraryMovies() {
-        return library.getAvailableMovies();
+        return movieLibrary.getAvailableItems();
     }
 
     public void checkoutLibraryMovie(Movie movie) {
-        library.checkoutMovie(movie);
+        try {
+            movieLibrary.checkoutItems(movie);
+            checkoutMessage = BOOK_CHECKOUT_SUCCESS;
+        } catch (InvalidItemException e) {
+            checkoutMessage = BOOK_CHECKOUT_FAILURE;
+        }
     }
 
     public boolean validateUser(int libraryNumber, String password) {

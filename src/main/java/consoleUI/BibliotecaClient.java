@@ -8,7 +8,8 @@ import java.util.Scanner;
 //Job: Represent a Biblioteca client
 public class BibliotecaClient implements UserInterface {
     Biblioteca biblioteca;
-    Library library;
+    Library<Book> bookLibrary;
+    Library<Movie> movieLibrary;
     int option;
     Scanner scanner;
     static boolean exit;
@@ -19,8 +20,9 @@ public class BibliotecaClient implements UserInterface {
     }
 
     private void init() {
-        library = new Library(initBooks(), initMovies());
-        biblioteca = new Biblioteca(library, null);
+        bookLibrary = new Library<>(initBooks());
+        movieLibrary = new Library<>(initMovies());
+        biblioteca = new Biblioteca(bookLibrary, null, movieLibrary);
         scanner = new Scanner(System.in);
     }
 
