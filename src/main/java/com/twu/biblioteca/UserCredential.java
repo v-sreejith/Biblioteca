@@ -11,6 +11,10 @@ public class UserCredential {
         this.password = password;
     }
 
+    String credentials() {
+        return libraryNumber + "," + password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -13,11 +13,13 @@ public class Biblioteca {
     public static final String BOOK_RETURN_FAILURE = "That is not a valid book to return.";
 
     Library library;
+    private UserCredential userCredential;
     private String checkoutMessage;
     private String returnMessage;
 
     public Biblioteca(Library library, UserCredential userCredential) {
         this.library = library;
+        this.userCredential = userCredential;
         returnMessage = BOOK_RETURN_FAILURE;
         checkoutMessage = BOOK_CHECKOUT_FAILURE;
     }
@@ -69,6 +71,8 @@ public class Biblioteca {
     }
 
     public boolean validateUser(int libraryNumber, String password) {
-        return true;
+        String[] format = userCredential.credentials().split(",");
+        return libraryNumber == Integer.parseInt(format[0])
+                && password.equals(format[1]);
     }
 }
