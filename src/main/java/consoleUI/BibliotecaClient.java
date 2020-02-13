@@ -14,6 +14,10 @@ public class BibliotecaClient implements UserInterface {
     static boolean exit;
     static boolean returnBack;
 
+    public BibliotecaClient() {
+        init();
+    }
+
     private void init() {
         library = new Library(initBooks(), initMovies());
         biblioteca = new Biblioteca(library);
@@ -45,10 +49,6 @@ public class BibliotecaClient implements UserInterface {
         return movies;
     }
 
-    public BibliotecaClient() {
-        init();
-    }
-
     private void start() {
         printWelcomeMessage();
         while (!exit) {
@@ -58,48 +58,6 @@ public class BibliotecaClient implements UserInterface {
 
     private void printWelcomeMessage() {
         System.out.println(biblioteca.getWelcomeMessage());
-    }
-
-    private void printBooks(List<Book> books) {
-        System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
-        System.out.println();
-        for (Book book : books) {
-            String[] details = book.formattedDetails().split(",");
-            System.out.format("%-20s\t%-30s\t%-20s", details[0], details[1], details[2]);
-            System.out.println();
-        }
-    }
-
-    private void printMovies(List<Movie> movies) {
-        System.out.format("\n%-20s\t%-30s\t%-30s\t%-20s\n", "Name", "Year", "Director", "Rating");
-        System.out.println();
-        for (Movie movie : movies) {
-            String[] details = movie.formattedDetails().split(",");
-            System.out.format("%-20s\t%-30s\t%-30s\t%-20s", details[0], details[1], details[2], details[3]);
-            System.out.println();
-        }
-    }
-
-    public void printListOfBooks() {
-        do {
-            List<Book> books = biblioteca.getLibraryBooks();
-            printBooks(books);
-            returnToMenu();
-        }
-        while (!returnBack);
-    }
-
-    @Override
-    public void bookCheckout() {
-        printBooks(biblioteca.getLibraryBooks());
-        System.out.println("\nEnter book index for checkout");
-        getOption();
-        Book book = biblioteca.getLibraryBooks().get(option-1);
-        biblioteca.checkoutLibraryBook(book);
-        System.out.println(biblioteca.getCheckoutMessage());
-        while (!returnBack) {
-            returnToMenu();
-        }
     }
 
     private void printMenu() {
@@ -112,38 +70,23 @@ public class BibliotecaClient implements UserInterface {
         executeOption();
     }
 
-    public void quit() {
-        exit = true;
+    private void getOption() {
+        option = scanner.nextInt();
+    }
+
+    private void executeOption() {
+        getOption();
+        if (option > 0 && option <= Option.values().length) {
+            Option.values()[option - 1].executeOption(this);
+        } else showInvalid();
+    }
+
+    public void showInvalid() {
+        System.out.println("\nPlease select a valid option\n");
     }
 
     public void goBack() {
         printMenu();
-    }
-
-    @Override
-    public void printListOfMovies() {
-        do {
-            List<Movie> movies = biblioteca.getLibraryMovies();
-            printMovies(movies);
-            returnToMenu();
-        }
-        while (!returnBack);
-    }
-
-    @Override
-    public void movieCheckout() {
-        List<Movie> movies=biblioteca.getLibraryMovies();
-        printMovies(movies);
-        System.out.println("\nEnter movie index for checkout");
-        getOption();
-        if (option>0 && option<movies.size()){
-            Movie movie = movies.get(option-1);
-            biblioteca.checkoutLibraryMovie(movie);
-            System.out.println(biblioteca.getCheckoutMessage());
-        } else showInvalid();
-        while (!returnBack) {
-            returnToMenu();
-        }
     }
 
     private void returnToMenu() {
@@ -158,9 +101,69 @@ public class BibliotecaClient implements UserInterface {
         }
     }
 
-    @Override
-    public void showInvalid() {
-        System.out.println("\nPlease select a valid option\n");
+    public void printListOfBooks() {
+        do {
+            List<Book> books = biblioteca.getLibraryBooks();
+            printBooks(books);
+            returnToMenu();
+        }
+        while (!returnBack);
+    }
+
+    private void printBooks(List<Book> books) {
+        System.out.format("\n%-20s\t%-30s\t%-20s\n", "Titles", "Authors", "Year of Publication");
+        System.out.println();
+        for (Book book : books) {
+            String[] details = book.formattedDetails().split(",");
+            System.out.format("%-20s\t%-30s\t%-20s", details[0], details[1], details[2]);
+            System.out.println();
+        }
+    }
+
+    public void printListOfMovies() {
+        do {
+            List<Movie> movies = biblioteca.getLibraryMovies();
+            printMovies(movies);
+            returnToMenu();
+        }
+        while (!returnBack);
+    }
+
+    private void printMovies(List<Movie> movies) {
+        System.out.format("\n%-20s\t%-30s\t%-30s\t%-20s\n", "Name", "Year", "Director", "Rating");
+        System.out.println();
+        for (Movie movie : movies) {
+            String[] details = movie.formattedDetails().split(",");
+            System.out.format("%-20s\t%-30s\t%-30s\t%-20s", details[0], details[1], details[2], details[3]);
+            System.out.println();
+        }
+    }
+
+    public void bookCheckout() {
+        printBooks(biblioteca.getLibraryBooks());
+        System.out.println("\nEnter book index for checkout");
+        getOption();
+        Book book = biblioteca.getLibraryBooks().get(option-1);
+        biblioteca.checkoutLibraryBook(book);
+        System.out.println(biblioteca.getCheckoutMessage());
+        while (!returnBack) {
+            returnToMenu();
+        }
+    }
+
+    public void movieCheckout() {
+        List<Movie> movies=biblioteca.getLibraryMovies();
+        printMovies(movies);
+        System.out.println("\nEnter movie index for checkout");
+        getOption();
+        if (option>0 && option<movies.size()){
+            Movie movie = movies.get(option-1);
+            biblioteca.checkoutLibraryMovie(movie);
+            System.out.println(biblioteca.getCheckoutMessage());
+        } else showInvalid();
+        while (!returnBack) {
+            returnToMenu();
+        }
     }
 
     public void returnBook() {
@@ -178,15 +181,8 @@ public class BibliotecaClient implements UserInterface {
         }
     }
 
-    private void getOption() {
-        option = scanner.nextInt();
-    }
-
-    private void executeOption() {
-        getOption();
-        if (option > 0 && option <= Option.values().length) {
-            Option.values()[option - 1].executeOption(this);
-        } else showInvalid();
+    public void quit() {
+        exit = true;
     }
 
     public static void main(String[] args) {
