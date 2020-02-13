@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 //Job: Represent a Biblioteca client
 public class BibliotecaClient implements UserInterface {
+    boolean validUser;
     Biblioteca biblioteca;
     Inventory<Book> bookInventory;
     Inventory<Movie> movieInventory;
+    UserCredential userCredential;
     int option;
     Scanner scanner;
     static boolean exit;
@@ -22,7 +24,8 @@ public class BibliotecaClient implements UserInterface {
     private void init() {
         bookInventory = new Inventory<>(initBooks());
         movieInventory = new Inventory<>(initMovies());
-        biblioteca = new Biblioteca(bookInventory, null, movieInventory);
+        userCredential = new UserCredential(1234, "abcd");
+        biblioteca = new Biblioteca(bookInventory, userCredential, movieInventory);
         scanner = new Scanner(System.in);
     }
 
@@ -62,12 +65,38 @@ public class BibliotecaClient implements UserInterface {
         System.out.println(biblioteca.getWelcomeMessage());
     }
 
+    private void login() {
+        int libraryNumber;
+        String password;
+        System.out.println("\nEnter library number");
+        libraryNumber = scanner.nextInt();
+        System.out.println("\nEnter Password");
+        password = scanner.next();
+        if (biblioteca.validateUser(libraryNumber, password)) {
+            validUser = true;
+            System.out.println("Login Success!!");
+        }
+        printMenu();
+    }
+
+    private void askLogin() {
+        System.out.println("Enter 0 to Login");
+    }
+
     private void printMenu() {
         int i = 1;
         System.out.println("\nSelect an option\n");
-        for (Option option : Option.values()) {
-            System.out.println(i + ". " + option.value);
-            i += 1;
+        if (validUser) {
+            for (Option option : Option.values()) {
+                System.out.println(i + ". " + option.value);
+                i += 1;
+            }
+        } else {
+            askLogin();
+            for (Option option : Option.values()) {
+                System.out.println(i + ". " + option.value);
+                i += 1;
+            }
         }
         executeOption();
     }
@@ -78,7 +107,10 @@ public class BibliotecaClient implements UserInterface {
 
     private void executeOption() {
         getOption();
-        if (option > 0 && option <= Option.values().length) {
+        if (option == 0 && !validUser) {
+            login();
+        }
+        else if (option > 0 && option <= Option.values().length) {
             Option.values()[option - 1].executeOption(this);
         } else showInvalid();
     }
@@ -145,7 +177,7 @@ public class BibliotecaClient implements UserInterface {
         printBooks(biblioteca.getLibraryBooks());
         System.out.println("\nEnter book index for checkout");
         getOption();
-        Book book = biblioteca.getLibraryBooks().get(option-1);
+        Book book = biblioteca.getLibraryBooks().get(option - 1);
         biblioteca.checkoutLibraryBook(book);
         System.out.println(biblioteca.getCheckoutMessage());
         while (!returnBack) {
@@ -154,12 +186,12 @@ public class BibliotecaClient implements UserInterface {
     }
 
     public void movieCheckout() {
-        List<Movie> movies=biblioteca.getLibraryMovies();
+        List<Movie> movies = biblioteca.getLibraryMovies();
         printMovies(movies);
         System.out.println("\nEnter movie index for checkout");
         getOption();
-        if (option>0 && option<movies.size()){
-            Movie movie = movies.get(option-1);
+        if (option > 0 && option < movies.size()) {
+            Movie movie = movies.get(option - 1);
             biblioteca.checkoutLibraryMovie(movie);
             System.out.println(biblioteca.getCheckoutMessage());
         } else showInvalid();
