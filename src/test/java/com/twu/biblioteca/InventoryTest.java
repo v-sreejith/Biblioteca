@@ -42,7 +42,7 @@ class InventoryTest {
         Book bookOne = mock(Book.class);
         Book bookTwo = mock(Book.class);
         Book bookThree = mock(Book.class);
-        Inventory<Book> inventory = new Inventory<Book>(List.of(bookOne, bookTwo, bookThree));
+        Inventory<Book> inventory = new Inventory<>(List.of(bookOne, bookTwo, bookThree));
 
         inventory.checkoutItems(bookTwo);
         inventory.receiveItem(bookTwo);
@@ -66,9 +66,6 @@ class InventoryTest {
 
     @Test
     public void shouldCheckoutAMovieAfterSelection() throws InvalidItemException {
-        Book bookOne = mock(Book.class);
-        Book bookTwo = mock(Book.class);
-        List<Book> books = List.of(bookOne, bookTwo);
         Movie movieOne = mock(Movie.class);
         Movie movieTwo = mock(Movie.class);
         List<Movie> movies = List.of(movieOne, movieTwo);
@@ -92,9 +89,6 @@ class InventoryTest {
 
     @Test
     public void shouldReceiveMovieIssued() throws InvalidItemException {
-        Book bookOne = mock(Book.class);
-        Book bookTwo = mock(Book.class);
-        List<Book> books = List.of(bookOne, bookTwo);
         Movie movieOne = mock(Movie.class);
         Movie movieTwo = mock(Movie.class);
         List<Movie> movies = List.of(movieOne, movieTwo);
