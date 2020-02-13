@@ -93,4 +93,21 @@ class LibraryTest {
 
         assertThrows(InvalidBookException.class,()->library.checkoutBook(bookThree));
     }
+
+    @Test
+    public void shouldReceiveMovieIssued() {
+        Book bookOne = mock(Book.class);
+        Book bookTwo = mock(Book.class);
+        List<Book> books = List.of(bookOne, bookTwo);
+        Movie movieOne = mock(Movie.class);
+        Movie movieTwo = mock(Movie.class);
+        List<Movie> movies = List.of(movieOne, movieTwo);
+        Library library = new Library(books, movies);
+
+        library.checkoutMovie(movieOne);
+        library.receiveMovie(movieOne);
+
+        assertTrue(library.getAvailableMovies().contains(movieOne));
+        assertFalse(library.getIssuedMovies().contains(movieOne));
+    }
 }

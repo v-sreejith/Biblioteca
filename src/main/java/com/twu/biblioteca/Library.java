@@ -31,6 +31,10 @@ public class Library {
         return issuedBooks;
     }
 
+    public List<Movie> getIssuedMovies() {
+        return issuedMovies;
+    }
+
     public void checkoutBook(Book book) throws InvalidBookException {
         if (availableBooks.contains(book)) {
             availableBooks.remove(book);
@@ -53,6 +57,13 @@ public class Library {
         if (availableMovies.contains(movie)) {
             availableMovies.remove(movie);
             issuedMovies.add(movie);
+        }
+    }
+
+    public void receiveMovie(Movie movie) {
+        if (movies.contains(movie) && !availableMovies.contains(movie)) {
+            issuedMovies.remove(movie);
+            availableMovies.add(movie);
         }
     }
 }
