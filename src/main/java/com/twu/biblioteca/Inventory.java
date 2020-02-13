@@ -34,7 +34,7 @@ public class Inventory<T extends LibraryItem> {
     }
 
     public void receive(T item) throws InvalidItemException {
-        if (!items.contains(item) && availableItems.contains(item)) {
+        if (!items.contains(item) || availableItems.contains(item)) {
             throw new InvalidItemException();
         }
         issuedItems.remove(item);
