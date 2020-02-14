@@ -90,6 +90,7 @@ public class Biblioteca {
         try {
             movieInventory.checkout(movie);
             checkoutMessage = MOVIE_CHECKOUT_SUCCESS;
+            currentUser.issueMovie(movie);
         } catch (InvalidItemException e) {
             checkoutMessage = MOVIE_CHECKOUT_FAILURE;
         }

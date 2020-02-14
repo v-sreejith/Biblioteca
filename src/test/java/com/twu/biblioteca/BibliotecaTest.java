@@ -156,4 +156,18 @@ class BibliotecaTest {
 
         assertThat(user.issuedBooks().get(0), is(equalTo(book)));
     }
+
+    @Test
+    public void shouldIssueAMovieToCurrentUser() {
+        Movie movie = mock(Movie.class);
+        Inventory<Movie> inventory = new Inventory<>(List.of(movie));
+        UserCredential credential = new UserCredential(1234, "abcd");
+        User user = new User(credential, "");
+        Biblioteca biblioteca = new Biblioteca(null, List.of(user), inventory);
+
+        biblioteca.login(1234, "abcd");
+        biblioteca.checkoutLibraryMovie(movie);
+
+        assertThat(user.issuedMovies().get(0), is(equalTo(movie)));
+    }
 }
