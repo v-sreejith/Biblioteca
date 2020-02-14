@@ -55,6 +55,7 @@ public class Biblioteca {
         try {
             bookInventory.checkout(book);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
+            currentUser.issueBook(book);
         } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;
         }
