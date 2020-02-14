@@ -43,4 +43,8 @@ public class User {
     public void returnMovie(Movie movie) {
         issuedMovies.remove(movie);
     }
+
+    public void returnBook(Book book) {
+        issuedBooks.remove(book);
+    }
 }

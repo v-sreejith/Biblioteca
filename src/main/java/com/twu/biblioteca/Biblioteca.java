@@ -79,6 +79,9 @@ public class Biblioteca {
         try {
             bookInventory.receive(book);
             returnMessage = BOOK_RETURN_SUCCESS;
+            if (currentUser != null) {
+                currentUser.returnBook(book);
+            }
         } catch (InvalidItemException e) {
             returnMessage = BOOK_RETURN_FAILURE;
         }
