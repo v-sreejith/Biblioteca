@@ -10,4 +10,8 @@ public class User {
     String sendCredential() {
         return userCredential.credentials();
     }
+
+    String userDetails() {
+        return "";
+    }
 }

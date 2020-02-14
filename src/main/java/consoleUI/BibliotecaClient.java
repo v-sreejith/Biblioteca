@@ -74,9 +74,11 @@ public class BibliotecaClient implements UserInterface {
         libraryNumber = scanner.nextInt();
         System.out.println("\nEnter Password");
         password = scanner.next();
-        if (biblioteca.validateUser(libraryNumber, password)) {
+        biblioteca.login(libraryNumber, password);
+        String loginMessage = biblioteca.getLoginMessage();
+        System.out.println(loginMessage);
+        if (loginMessage.equals("Login Success!!")) {
             validUser = true;
-            System.out.println("Login Success!!");
         }
         printMenu();
     }

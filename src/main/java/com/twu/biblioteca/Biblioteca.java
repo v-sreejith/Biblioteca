@@ -15,10 +15,14 @@ public class Biblioteca {
     public static final String MOVIE_CHECKOUT_FAILURE = "Sorry, that movie is not available";
     public static final String MOVIE_RETURN_SUCCESS = "Thank you for returning the movie";
     public static final String MOVIE_RETURN_FAILURE = "That is not a valid movie to return.";
+    public static final String LOGIN_SUCCESS = "Login Success!!";
+    public static final String LOGIN_FAILURE = "Login Failed";
 
     private final Inventory<Book> bookInventory;
     private final Inventory<Movie> movieInventory;
-    private List<User> users;
+    private final List<User> users;
+    private User currentUser;
+    private String loginMessage;
     private String checkoutMessage;
     private String returnMessage;
 
@@ -28,6 +32,7 @@ public class Biblioteca {
         this.movieInventory = movieInventory;
         returnMessage = BOOK_RETURN_FAILURE;
         checkoutMessage = BOOK_CHECKOUT_FAILURE;
+        loginMessage = LOGIN_FAILURE;
     }
 
     public String getWelcomeMessage() {
@@ -46,7 +51,6 @@ public class Biblioteca {
         return movieInventory.getIssuedItems();
     }
 
-
     public void checkoutLibraryBook(Book book) {
         try {
             bookInventory.checkout(book);
@@ -54,6 +58,10 @@ public class Biblioteca {
         } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;
         }
+    }
+
+    public String getLoginMessage() {
+        return loginMessage;
     }
 
     public String getCheckoutMessage() {
@@ -95,13 +103,18 @@ public class Biblioteca {
         }
     }
 
-    public boolean validateUser(int libraryNumber, String password) {
+    public void login(int libraryNumber, String password) {
         for (User user : users) {
             String[] format = user.sendCredential().split(",");
             if (libraryNumber == Integer.parseInt(format[0]) && password.equals(format[1])) {
-                return true;
+                currentUser = user;
+                loginMessage = LOGIN_SUCCESS;
+                break;
             }
         }
-        return false;
+    }
+
+    public String currentUserDetails() {
+        return currentUser.userDetails();
     }
 }

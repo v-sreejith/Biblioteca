@@ -8,7 +8,6 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 class BibliotecaTest {
@@ -132,14 +131,15 @@ class BibliotecaTest {
     }
 
     @Test
-    public void shouldValidateUserCredentials() {
+    public void shouldGetCurrentUserDetails() {
         Inventory<Book> inventory = mock(Inventory.class);
-        int libraryNumber = 12345;
-        String password = "Hello";
-        UserCredential credential = new UserCredential(libraryNumber, password);
+        UserCredential credential = new UserCredential(1234, "abcd");
         User user = new User(credential);
         Biblioteca biblioteca = new Biblioteca(inventory, List.of(user), null);
 
-        assertTrue(biblioteca.validateUser(libraryNumber, password));
+        biblioteca.login(1234, "abcd");
+        String currentUserDetails = biblioteca.currentUserDetails();
+
+        assertThat(currentUserDetails, is(equalTo(user.userDetails())));
     }
 }
