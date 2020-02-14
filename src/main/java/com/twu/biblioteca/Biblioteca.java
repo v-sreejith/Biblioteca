@@ -18,13 +18,13 @@ public class Biblioteca {
 
     private final Inventory<Book> bookInventory;
     private final Inventory<Movie> movieInventory;
-    private List<UserCredential> userCredentials;
+    private List<User> users;
     private String checkoutMessage;
     private String returnMessage;
 
-    public Biblioteca(Inventory<Book> bookInventory, List<UserCredential> userCredentials, Inventory<Movie> movieInventory) {
+    public Biblioteca(Inventory<Book> bookInventory, List<User> users, Inventory<Movie> movieInventory) {
         this.bookInventory = bookInventory;
-        this.userCredentials = userCredentials;
+        this.users = users;
         this.movieInventory = movieInventory;
         returnMessage = BOOK_RETURN_FAILURE;
         checkoutMessage = BOOK_CHECKOUT_FAILURE;
@@ -96,8 +96,8 @@ public class Biblioteca {
     }
 
     public boolean validateUser(int libraryNumber, String password) {
-        for (UserCredential credential : userCredentials) {
-            String[] format = credential.credentials().split(",");
+        for (User user : users) {
+            String[] format = user.sendCredential().split(",");
             if (libraryNumber == Integer.parseInt(format[0]) && password.equals(format[1])) {
                 return true;
             }

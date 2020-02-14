@@ -137,7 +137,8 @@ class BibliotecaTest {
         int libraryNumber = 12345;
         String password = "Hello";
         UserCredential credential = new UserCredential(libraryNumber, password);
-        Biblioteca biblioteca = new Biblioteca(inventory, List.of(credential), null);
+        User user = new User(credential);
+        Biblioteca biblioteca = new Biblioteca(inventory, List.of(user), null);
 
         assertTrue(biblioteca.validateUser(libraryNumber, password));
     }

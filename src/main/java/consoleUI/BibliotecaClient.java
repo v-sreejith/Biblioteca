@@ -12,6 +12,7 @@ public class BibliotecaClient implements UserInterface {
     Inventory<Book> bookInventory;
     Inventory<Movie> movieInventory;
     UserCredential userCredential;
+    User user;
     int option;
     Scanner scanner;
     static boolean exit;
@@ -25,7 +26,8 @@ public class BibliotecaClient implements UserInterface {
         bookInventory = new Inventory<>(initBooks());
         movieInventory = new Inventory<>(initMovies());
         userCredential = new UserCredential(1234, "abcd");
-        biblioteca = new Biblioteca(bookInventory, List.of(userCredential), movieInventory);
+        user = new User(userCredential);
+        biblioteca = new Biblioteca(bookInventory, List.of(user), movieInventory);
         scanner = new Scanner(System.in);
     }
 
