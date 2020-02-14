@@ -134,7 +134,7 @@ class BibliotecaTest {
     public void shouldGetCurrentUserDetails() {
         Inventory<Book> inventory = mock(Inventory.class);
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential);
+        User user = new User(credential, "");
         Biblioteca biblioteca = new Biblioteca(inventory, List.of(user), null);
 
         biblioteca.login(1234, "abcd");

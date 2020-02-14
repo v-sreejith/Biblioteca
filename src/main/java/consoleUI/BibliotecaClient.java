@@ -26,7 +26,7 @@ public class BibliotecaClient implements UserInterface {
         bookInventory = new Inventory<>(initBooks());
         movieInventory = new Inventory<>(initMovies());
         userCredential = new UserCredential(1234, "abcd");
-        user = new User(userCredential);
+        user = new User(userCredential, "");
         biblioteca = new Biblioteca(bookInventory, List.of(user), movieInventory);
         scanner = new Scanner(System.in);
     }
