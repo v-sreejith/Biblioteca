@@ -39,4 +39,8 @@ public class User {
     String userDetails() {
         return ""+name;
     }
+
+    public void returnMovie(Movie movie) {
+        issuedMovies.remove(movie);
+    }
 }

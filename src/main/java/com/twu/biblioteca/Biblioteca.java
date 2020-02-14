@@ -55,7 +55,9 @@ public class Biblioteca {
         try {
             bookInventory.checkout(book);
             checkoutMessage = BOOK_CHECKOUT_SUCCESS;
-            currentUser.issueBook(book);
+            if (currentUser != null) {
+                currentUser.issueBook(book);
+            }
         } catch (InvalidItemException e) {
             checkoutMessage = BOOK_CHECKOUT_FAILURE;
         }
@@ -90,7 +92,9 @@ public class Biblioteca {
         try {
             movieInventory.checkout(movie);
             checkoutMessage = MOVIE_CHECKOUT_SUCCESS;
-            currentUser.issueMovie(movie);
+            if (currentUser != null) {
+                currentUser.issueMovie(movie);
+            }
         } catch (InvalidItemException e) {
             checkoutMessage = MOVIE_CHECKOUT_FAILURE;
         }
@@ -100,6 +104,9 @@ public class Biblioteca {
         try {
             movieInventory.receive(movie);
             returnMessage = MOVIE_RETURN_SUCCESS;
+            if (currentUser != null) {
+                currentUser.returnMovie(movie);
+            }
         } catch (InvalidItemException e) {
             returnMessage = MOVIE_RETURN_FAILURE;
         }

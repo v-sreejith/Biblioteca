@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.exceptions.InvalidItemException;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -169,5 +170,20 @@ class BibliotecaTest {
         biblioteca.checkoutLibraryMovie(movie);
 
         assertThat(user.issuedMovies().get(0), is(equalTo(movie)));
+    }
+
+    @Test
+    public void shouldReturnAMovieFromCurrentUser() {
+        Movie movie = mock(Movie.class);
+        Inventory<Movie> inventory = new Inventory<>(List.of(movie));
+        UserCredential credential = new UserCredential(1234, "abcd");
+        User user = new User(credential, "");
+        Biblioteca biblioteca = new Biblioteca(null, List.of(user), inventory);
+
+        biblioteca.login(1234, "abcd");
+        biblioteca.checkoutLibraryMovie(movie);
+        biblioteca.returnLibraryMovie(movie);
+
+        assertThat(user.issuedMovies(), is(equalTo(new ArrayList<>())));
     }
 }
