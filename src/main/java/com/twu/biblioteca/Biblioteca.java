@@ -44,11 +44,11 @@ public class Biblioteca {
     }
 
     public List<Book> getIssuedBooks() {
-        return bookInventory.getIssuedItems();
+        return currentUser.issuedBooks();
     }
 
     public List<Movie> getIssuedMovies() {
-        return movieInventory.getIssuedItems();
+        return currentUser.issuedMovies();
     }
 
     public void checkoutLibraryBook(Book book) {
