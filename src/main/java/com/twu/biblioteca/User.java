@@ -6,13 +6,17 @@ import java.util.List;
 public class User {
     private UserCredential userCredential;
     private final String name;
+    private final String email;
+    private final long phoneNumber;
     private final String privilege;
     private final List<Book> issuedBooks;
     private final List<Movie> issuedMovies;
 
-    public User(UserCredential userCredential, String name, String privilege) {
+    public User(UserCredential userCredential, String name, String email,long phoneNumber, String privilege) {
         this.userCredential = userCredential;
         this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.privilege = privilege;
         issuedBooks = new ArrayList<>();
         issuedMovies = new ArrayList<>();
@@ -39,7 +43,7 @@ public class User {
     }
 
     String userDetails() {
-        return ""+name;
+        return name+","+email+","+phoneNumber;
     }
 
     public void returnMovie(Movie movie) {

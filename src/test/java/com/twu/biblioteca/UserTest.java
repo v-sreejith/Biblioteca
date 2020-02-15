@@ -14,7 +14,7 @@ class UserTest {
     @Test
     public void shouldReturnUserCredential() {
         UserCredential credential = mock(UserCredential.class);
-        User user = new User(credential, "abc", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
 
         user.sendCredential();
 
@@ -24,7 +24,7 @@ class UserTest {
     @Test
     public void shouldIssueABook() {
         UserCredential credential = mock(UserCredential.class);
-        User user = new User(credential, "abc", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
         Book book = mock(Book.class);
 
         user.issueBook(book);
@@ -35,7 +35,7 @@ class UserTest {
     @Test
     public void shouldIssueAMovie() {
         UserCredential credential = mock(UserCredential.class);
-        User user = new User(credential, "abc", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
         Movie movie = mock(Movie.class);
 
         user.issueMovie(movie);
@@ -46,7 +46,7 @@ class UserTest {
     @Test
     public void shouldReturnAMovie() {
         UserCredential credential = mock(UserCredential.class);
-        User user = new User(credential, "abc", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
         Movie movie = mock(Movie.class);
 
         user.issueMovie(movie);

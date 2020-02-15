@@ -125,7 +125,7 @@ class BibliotecaTest {
     public void shouldGetCurrentUserDetails() {
         Inventory<Book> inventory = mock(Inventory.class);
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
         Biblioteca biblioteca = new Biblioteca(inventory, List.of(user), null);
 
         biblioteca.login(1234, "abcd");
@@ -139,7 +139,7 @@ class BibliotecaTest {
         Book book = mock(Book.class);
         Inventory<Book> inventory = new Inventory<>(List.of(book));
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
         Biblioteca biblioteca = new Biblioteca(inventory, List.of(user), null);
 
         biblioteca.login(1234, "abcd");
@@ -153,7 +153,7 @@ class BibliotecaTest {
         Movie movie = mock(Movie.class);
         Inventory<Movie> inventory = new Inventory<>(List.of(movie));
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
         Biblioteca biblioteca = new Biblioteca(null, List.of(user), inventory);
 
         biblioteca.login(1234, "abcd");
@@ -167,7 +167,7 @@ class BibliotecaTest {
         Movie movie = mock(Movie.class);
         Inventory<Movie> inventory = new Inventory<>(List.of(movie));
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "", "User");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
         Biblioteca biblioteca = new Biblioteca(null, List.of(user), inventory);
 
         biblioteca.login(1234, "abcd");
