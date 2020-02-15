@@ -12,6 +12,7 @@ public class BibliotecaClient implements UserInterface {
     Inventory<Book> bookInventory;
     Inventory<Movie> movieInventory;
     UserCredential userCredential;
+    MenuOptions menuOptions;
     User user;
     int option;
     Scanner scanner;
@@ -23,12 +24,13 @@ public class BibliotecaClient implements UserInterface {
     }
 
     private void init() {
+        scanner = new Scanner(System.in);
         bookInventory = new Inventory<>(initBooks());
         movieInventory = new Inventory<>(initMovies());
         userCredential = new UserCredential(1234, "abcd");
         user = new User(userCredential, "","User");
         biblioteca = new Biblioteca(bookInventory, List.of(user), movieInventory);
-        scanner = new Scanner(System.in);
+        menuOptions = new MenuOptions(biblioteca);
     }
 
     private List<Book> initBooks() {
@@ -88,34 +90,30 @@ public class BibliotecaClient implements UserInterface {
     }
 
     private void printMenu() {
-        int i = 1;
         System.out.println("\nSelect an option\n");
-        if (validUser) {
-            for (Option option : Option.values()) {
-                System.out.println(i + ". " + option.value);
-                i += 1;
-            }
-        } else {
+        List<Option> options = menuOptions.getOptions();
+        int i = 1;
+        if (!validUser) {
             askLogin();
-            for (Option option : Option.values()) {
-                System.out.println(i + ". " + option.value);
-                i += 1;
-            }
         }
-        executeOption();
+        for (Option option : options) {
+            System.out.println(i + ". " + option.value);
+            i += 1;
+        }
+        executeOption(options);
     }
 
     private void getOption() {
         option = scanner.nextInt();
     }
 
-    private void executeOption() {
+    private void executeOption(List<Option> options) {
         getOption();
         if (option == 0 && !validUser) {
             login();
         }
-        else if (option > 0 && option <= Option.values().length) {
-            Option.values()[option - 1].executeOption(this);
+        else if (option > 0 && option <= options.size()) {
+            options.get(option-1).executeOption(this);
         } else showInvalid();
     }
 

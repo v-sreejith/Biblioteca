@@ -26,5 +26,4 @@ class MenuOptionsTest {
         options.add(Option.QUIT_APP);
         assertThat(menuOptions.getOptions(), is(equalTo(options)));
     }
-
 }

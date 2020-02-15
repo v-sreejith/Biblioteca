@@ -10,31 +10,34 @@ public class MenuOptions {
     public MenuOptions(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         options = new ArrayList<>();
-        initOptions();
     }
 
-    private void initOptions() {
-        options.add(Option.LIST_BOOKS);
-        options.add(Option.LIST_MOVIES);
+    private List<Option> generalOptions() {
+        return List.of(Option.LIST_BOOKS,
+                Option.LIST_MOVIES,
+                Option.QUIT_APP);
     }
 
-    private void initUserOptions() {
-        options.add(Option.CHECKOUT_BOOK);
-        options.add(Option.RETURN_BOOK);
-        options.add(Option.CHECKOUT_MOVIE);
-        options.add(Option.RETURN_MOVIE);
+    private List<Option> userOptions() {
+        return List.of(Option.LIST_BOOKS,
+                Option.LIST_MOVIES,
+                Option.CHECKOUT_BOOK,
+                Option.RETURN_BOOK,
+                Option.CHECKOUT_MOVIE,
+                Option.RETURN_MOVIE,
+                Option.QUIT_APP);
     }
 
     private void findPrivilegeOptions() {
         if (biblioteca.getCurrentUser() == null) {
+            options = generalOptions();
             return;
         }
-        initUserOptions();
+        options = userOptions();
     }
 
     public List<Option> getOptions() {
         findPrivilegeOptions();
-        options.add(Option.QUIT_APP);
         return options;
     }
 }

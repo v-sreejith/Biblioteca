@@ -131,6 +131,6 @@ public class Biblioteca {
     }
 
     public User getCurrentUser() {
-        return null;
+        return currentUser;
     }
 }
