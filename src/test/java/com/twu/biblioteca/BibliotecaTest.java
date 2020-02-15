@@ -32,16 +32,6 @@ class BibliotecaTest {
     }
 
     @Test
-    public void shouldReturnListOfIssuedBooksFromLibrary() {
-        Inventory<Book> inventory = mock(Inventory.class);
-        Biblioteca biblioteca = new Biblioteca(inventory, null, null);
-
-        biblioteca.getIssuedBooks();
-
-        verify(inventory, times(1)).getIssuedItems();
-    }
-
-    @Test
     public void shouldCheckoutABookFromLibrary() throws Exception {
         Book book = mock(Book.class);
         Inventory<Book> inventory = mock(Inventory.class);
@@ -135,7 +125,7 @@ class BibliotecaTest {
     public void shouldGetCurrentUserDetails() {
         Inventory<Book> inventory = mock(Inventory.class);
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "");
+        User user = new User(credential, "", "User");
         Biblioteca biblioteca = new Biblioteca(inventory, List.of(user), null);
 
         biblioteca.login(1234, "abcd");
@@ -149,7 +139,7 @@ class BibliotecaTest {
         Book book = mock(Book.class);
         Inventory<Book> inventory = new Inventory<>(List.of(book));
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "");
+        User user = new User(credential, "", "User");
         Biblioteca biblioteca = new Biblioteca(inventory, List.of(user), null);
 
         biblioteca.login(1234, "abcd");
@@ -163,7 +153,7 @@ class BibliotecaTest {
         Movie movie = mock(Movie.class);
         Inventory<Movie> inventory = new Inventory<>(List.of(movie));
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "");
+        User user = new User(credential, "", "User");
         Biblioteca biblioteca = new Biblioteca(null, List.of(user), inventory);
 
         biblioteca.login(1234, "abcd");
@@ -177,7 +167,7 @@ class BibliotecaTest {
         Movie movie = mock(Movie.class);
         Inventory<Movie> inventory = new Inventory<>(List.of(movie));
         UserCredential credential = new UserCredential(1234, "abcd");
-        User user = new User(credential, "");
+        User user = new User(credential, "", "User");
         Biblioteca biblioteca = new Biblioteca(null, List.of(user), inventory);
 
         biblioteca.login(1234, "abcd");

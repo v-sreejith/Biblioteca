@@ -6,12 +6,14 @@ import java.util.List;
 public class User {
     private UserCredential userCredential;
     private final String name;
+    private final String privilege;
     private final List<Book> issuedBooks;
     private final List<Movie> issuedMovies;
 
-    public User(UserCredential userCredential, String name) {
+    public User(UserCredential userCredential, String name, String privilege) {
         this.userCredential = userCredential;
         this.name = name;
+        this.privilege = privilege;
         issuedBooks = new ArrayList<>();
         issuedMovies = new ArrayList<>();
     }
@@ -46,5 +48,9 @@ public class User {
 
     public void returnBook(Book book) {
         issuedBooks.remove(book);
+    }
+
+    public String privilege() {
+        return privilege;
     }
 }

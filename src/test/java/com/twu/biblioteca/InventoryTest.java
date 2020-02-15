@@ -34,7 +34,6 @@ class InventoryTest {
         inventory.checkout(bookOne);
 
         assertFalse(inventory.getAvailableItems().contains(bookOne));
-        assertTrue(inventory.getIssuedItems().contains(bookOne));
     }
 
     @Test
@@ -48,7 +47,6 @@ class InventoryTest {
         inventory.receive(bookTwo);
 
         assertTrue(inventory.getAvailableItems().contains(bookTwo));
-        assertFalse(inventory.getIssuedItems().contains(bookTwo));
     }
 
     @Test
@@ -98,6 +96,5 @@ class InventoryTest {
         inventory.receive(movieOne);
 
         assertTrue(inventory.getAvailableItems().contains(movieOne));
-        assertFalse(inventory.getIssuedItems().contains(movieOne));
     }
 }

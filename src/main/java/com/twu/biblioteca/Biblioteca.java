@@ -129,4 +129,8 @@ public class Biblioteca {
     public String currentUserDetails() {
         return currentUser.userDetails();
     }
+
+    public User getCurrentUser() {
+        return null;
+    }
 }
