@@ -19,4 +19,6 @@ public interface UserInterface {
     void movieCheckout();
 
     void returnMovie();
+
+    void userDetails();
 }

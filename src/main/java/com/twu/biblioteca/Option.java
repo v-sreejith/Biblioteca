@@ -42,6 +42,12 @@ public enum Option {
         public void executeOption(UserInterface executable) {
             executable.returnMovie();
         }
+    },
+    USER_DETAILS("Get User Details") {
+        @Override
+        public void executeOption(UserInterface executable) {
+            executable.userDetails();
+        }
     };
     public String value;
 

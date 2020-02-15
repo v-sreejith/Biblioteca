@@ -176,4 +176,16 @@ class BibliotecaTest {
 
         assertThat(user.issuedMovies(), is(equalTo(new ArrayList<>())));
     }
+
+    @Test
+    public void shouldReturnCurrentUserDetails() {
+        UserCredential credential = new UserCredential(1234, "abcd");
+        User user = new User(credential, "abc", "abc@efg",1234567,"User");
+        Biblioteca biblioteca = new Biblioteca(null, List.of(user), null);
+
+        biblioteca.login(1234, "abcd");
+        String details = biblioteca.currentUserDetails();
+
+        assertThat(details,is(equalTo(user.userDetails())));
+    }
 }

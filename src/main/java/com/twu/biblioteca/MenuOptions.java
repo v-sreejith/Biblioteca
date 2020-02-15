@@ -25,6 +25,7 @@ public class MenuOptions {
                 Option.RETURN_BOOK,
                 Option.CHECKOUT_MOVIE,
                 Option.RETURN_MOVIE,
+                Option.USER_DETAILS,
                 Option.QUIT_APP);
     }
 

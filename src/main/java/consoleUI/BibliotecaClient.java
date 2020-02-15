@@ -28,7 +28,7 @@ public class BibliotecaClient implements UserInterface {
         bookInventory = new Inventory<>(initBooks());
         movieInventory = new Inventory<>(initMovies());
         userCredential = new UserCredential(1234, "abcd");
-        user = new User(userCredential, "","abc@efg",1234567,"User");
+        user = new User(userCredential, "example Name","abc@efg",1234567,"User");
         biblioteca = new Biblioteca(bookInventory, List.of(user), movieInventory);
         menuOptions = new MenuOptions(biblioteca);
     }
@@ -230,6 +230,13 @@ public class BibliotecaClient implements UserInterface {
         while (!returnBack) {
             returnToMenu();
         }
+    }
+
+    public void userDetails() {
+        String[] details = biblioteca.currentUserDetails().split(",");
+        System.out.println("\n\nName:\t" + details[0]);
+        System.out.println("\n\nE-Mail:\t" + details[1]);
+        System.out.println("\n\nPhone Number:\t" + details[2]);
     }
 
     public void quit() {

@@ -43,6 +43,7 @@ class MenuOptionsTest {
         options.add(Option.RETURN_BOOK);
         options.add(Option.CHECKOUT_MOVIE);
         options.add(Option.RETURN_MOVIE);
+        options.add(Option.USER_DETAILS);
         options.add(Option.QUIT_APP);
         assertThat(menuOptions.getOptions(), is(equalTo(options)));
     }
