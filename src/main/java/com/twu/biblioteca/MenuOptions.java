@@ -33,7 +33,9 @@ public class MenuOptions {
             options = generalOptions();
             return;
         }
-        options = userOptions();
+        if (biblioteca.getCurrentUser().privilege().equals("User")) {
+            options = userOptions();
+        }
     }
 
     public List<Option> getOptions() {
